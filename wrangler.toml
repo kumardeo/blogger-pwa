@@ -1,0 +1,26 @@
+name = "pwa"
+main = "./src/index.ts"
+compatibility_date = "2023-10-10"
+minify = true
+compatibility_flags = [ "nodejs_compat" ]
+
+[site]
+bucket = "./public"
+
+[vars]
+ENVIRONMENT = "development"
+
+[env.production]
+routes = [
+  # zone_name = "fineshopdesign.com"
+  # Replace 'fineshopdesign.com' with your domain name (must be added in Cloudflare Account)
+  # e.g.: zone_name = "example.com"
+  #
+  # pattern = "plus-ui.fineshopdesign.com/app/*"
+  # Replace 'plus-ui.fineshopdesign.com' with your blogger subdomain and domain (domain name must be same as zone_name)
+  # e.g.: pattern = "www.example.com/app/*"
+  { pattern = "plus-ui.fineshopdesign.com/app/*", zone_name = "fineshopdesign.com", custom_domain = false }
+]
+
+[env.production.vars]
+ENVIRONMENT = "production"

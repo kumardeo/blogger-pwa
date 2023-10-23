@@ -1,0 +1,24 @@
+# dependencies
+node_modules
+
+# production
+build
+dist
+
+# misc
+.DS_Store
+
+# tests
+.tests
+
+# cert
+.cert
+
+npm-debug.log
+yarn-error.log
+yarn.lock
+.yarnclean
+
+*.log
+*.key
+*.crt

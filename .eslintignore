@@ -1,0 +1,10 @@
+# dependencies
+node_modules
+
+# production
+build
+dist
+output
+
+# static
+public

@@ -1,0 +1,26 @@
+{
+  "cSpell.words": [
+    "browserconfig",
+    "chromeos",
+    "compat",
+    "deepmerge",
+    "favicons",
+    "Fineshop",
+    "fineshopdesign",
+    "googlebot",
+    "homescreen",
+    "itty",
+    "Kumar",
+    "metatags",
+    "mstile",
+    "precache",
+    "precaching",
+    "serviceworker",
+    "tsbuildinfo"
+  ],
+  "editor.formatOnSave": true,
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "files.associations": {
+    "*.toml": "dotenv"
+  }
+}
