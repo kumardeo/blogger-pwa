@@ -178,7 +178,7 @@ const getDirectoryFiles = async (directoryPath) => {
     appleTitle: options.name,
     applicationName: options.name,
     themeColor: options.themeColor,
-    tileColor: "#fff"
+    tileColor: options.themeColor
   });
   metatags.forEach((meta) => {
     const name = meta.length <= 40 ? meta : `${meta.substring(0, 39)}... />`;
