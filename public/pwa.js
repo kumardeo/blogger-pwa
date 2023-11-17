@@ -9,8 +9,12 @@ if ("serviceWorker" in navigator) {
           "%cPWA: Service Worker Registered",
           "color: green"
         );
-        console.log("Scope: " + registration.scope);
-        console.log("Script: " + registration.active.scriptURL);
+        if (registration.scope) {
+          console.log("Scope: " + registration.scope);
+        }
+        if (registration.active && registration.active.scriptURL) {
+          console.log("Script: " + registration.active.scriptURL);
+        }
         console.log("Build by: Fineshop Design");
         console.log("Developer site: https://fineshopdesign.com");
         console.groupEnd();
