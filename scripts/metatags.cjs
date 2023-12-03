@@ -319,11 +319,11 @@ const getMetaTags = ({
     }),
     getMetaElement({
       name: "msapplication-config",
-      content: path.posix.join(iconsPath, browserConfigPath)
+      content: path.posix.join(browserConfigPath)
     }),
     getLinkElement({
       rel: "yandex-tableau-widget",
-      href: yandexManifestPath
+      href: path.posix.join(yandexManifestPath)
     })
   ].filter(Boolean);
 
