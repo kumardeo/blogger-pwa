@@ -1,7 +1,7 @@
 {
-  "name": "Plus UI",
-  "short_name": "Plus UI",
-  "description": "Hello World!",
+  "name": "My Blog",
+  "short_name": "My Blog",
+  "description": "My blog description goes here...",
   "version": "1.0",
   "dir": "auto",
   "lang": "en-US",
@@ -102,10 +102,22 @@
   ],
   "shortcuts": [
     {
-      "name": "My Shortcut",
-      "short_name": "My ShortName",
-      "description": "My Shortcut description goes here...",
-      "url": "/search/label/my-shortcut.html?utm_source=homescreen",
+      "name": "My Shortcut 1",
+      "short_name": "My Shortcut 1",
+      "description": "My Shortcut 1 description goes here...",
+      "url": "/search/label/my-shortcut-1?utm_source=homescreen",
+      "icons": [
+        {
+          "src": "icons/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "My Shortcut 2",
+      "short_name": "My Shortcut 2",
+      "description": "My Shortcut 2 description goes here...",
+      "url": "/search/label/my-shortcut-2?utm_source=homescreen",
       "icons": [
         {
           "src": "icons/android-chrome-192x192.png",
