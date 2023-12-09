@@ -60,9 +60,9 @@ You can configure your PWA by making changes in `config.cjs` file in the root di
 /** @type {import("./types").Config} */
 const config = {
   version: "1.0",
-  name: "Plus UI",
-  shortName: "Plus UI",
-  description: "Hello World!",
+  name: "My Blog",
+  shortName: "My Blog",
+  description: "My blog description goes here...",
   direction: "auto",
   language: "en-US",
   backgroundColor: "#fff",
@@ -76,12 +76,26 @@ const config = {
   preferRelatedApplications: false,
   shortcuts: [
     {
-      name: "My Shortcut",
-      shortName: "My ShortName",
-      description: "My Shortcut description goes here...",
-      url: "/search/label/my-shortcut.html?utm_source=homescreen"
+      name: "My Shortcut 1",
+      shortName: "My Shortcut 1",
+      description: "My Shortcut 1 description goes here...",
+      url: "/search/label/my-shortcut-1?utm_source=homescreen"
+    },
+    {
+      name: "My Shortcut 2",
+      shortName: "My Shortcut 2",
+      description: "My Shortcut 2 description goes here...",
+      url: "/search/label/my-shortcut-2?utm_source=homescreen"
     }
-  ]
+  ],
+  pwa: {
+    consoleLogs: true,
+    oneSignalEnabled: false,
+    oneSignalConfig: {
+      appId: "********-****-****-****-************",
+      allowLocalhostAsSecureOrigin: true
+    }
+  }
 };
 
 module.exports = config;
