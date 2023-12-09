@@ -15,21 +15,18 @@ const app = Router<IRequest, Args>();
  * HTTP [GET] /app/my-route => Hello World!
  */
 
-app.all<IRequest, Args>("/app/:path+", async (request, { env, ctx }) => {
+app.all<IRequest, Args>("*", async (request, { env, ctx }) => {
   switch (request.method) {
     case "GET":
     case "HEAD": {
       const assets = new AssetFetcher(env);
       const response = await assets.serve(request, ctx, {
-        cacheControl: {
-          // Bypass cache in development environment
-          bypassCache: env.ENVIRONMENT === "development"
-        },
-        toAsset: (url) => url.pathname.replace(/^\/app/, "")
+        // Bypass cache in development environment
+        bypassCache: env.ENVIRONMENT === "development"
       });
       if (response) {
         // Set Service-Worker-Allowed header if asset is serviceworker.js
-        if (request.url.includes("/serviceworker.js")) {
+        if (/\/(service-?worker.js|sw.js)/.test(request.url)) {
           response.headers.set("Service-Worker-Allowed", "/");
         }
         return response;

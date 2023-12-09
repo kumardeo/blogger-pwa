@@ -28,7 +28,15 @@ const config = {
       description: "My Shortcut 2 description goes here...",
       url: "/search/label/my-shortcut-2?utm_source=homescreen"
     }
-  ]
+  ],
+  pwa: {
+    consoleLogs: true,
+    oneSignalEnabled: false,
+    oneSignalConfig: {
+      appId: "********-****-****-****-************",
+      allowLocalhostAsSecureOrigin: true
+    }
+  }
 };
 
 module.exports = config;

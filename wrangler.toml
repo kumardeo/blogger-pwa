@@ -4,6 +4,11 @@ compatibility_date = "2023-10-10"
 minify = true
 compatibility_flags = [ "nodejs_compat" ]
 
+[dev]
+ip = "127.0.0.1"
+port = 8080
+local_protocol = "http"
+
 [site]
 bucket = "./public"
 

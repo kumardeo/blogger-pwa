@@ -38,6 +38,14 @@ export type Config =
       screenshotSize?: `${number}x${number}`;
       appleStatusBarStyle?: "black-translucent" | "default" | "black";
       shortcuts?: Shortcut[];
+      pwa?: {
+        consoleLogs?: boolean;
+        oneSignalEnabled?: boolean;
+        oneSignalConfig?: {
+          appId: string;
+          allowLocalhostAsSecureOrigin?: boolean;
+        };
+      };
     }
   | {
       preferRelatedApplications?: true;
