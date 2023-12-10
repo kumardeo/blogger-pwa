@@ -167,10 +167,10 @@ if (typeof Lazy !== "function") {
 })({
   "consoleLogs": true,
   "serviceWorker": "/app/serviceworker.js",
-  "oneSignalEnabled": true,
+  "oneSignalEnabled": false,
   "oneSignalSDK": "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js",
   "oneSignalConfig": {
-    "appId": "f2828eee-c6f9-4f3a-9644-b6a2643054bd",
+    "appId": "********-****-****-****-************",
     "allowLocalhostAsSecureOrigin": true
   }
 })
