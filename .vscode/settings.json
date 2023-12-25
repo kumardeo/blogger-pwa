@@ -15,6 +15,7 @@
     "metatags",
     "mstile",
     "nodisplay",
+    "outdir",
     "precache",
     "precaching",
     "serviceworker",
