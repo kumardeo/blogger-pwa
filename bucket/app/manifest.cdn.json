@@ -7,8 +7,8 @@
   "dir": "auto",
   "lang": "en-US",
   "orientation": "any",
-  "start_url": "https://my-blog.blogspot.com/?utm_source=homescreen",
-  "scope": "https://my-blog.blogspot.com/",
+  "start_url": "https://redesigned-ui.blogspot.com/?utm_source=homescreen",
+  "scope": "https://redesigned-ui.blogspot.com/",
   "display": "standalone",
   "prefer_related_applications": false,
   "background_color": "#fff",
@@ -119,7 +119,7 @@
       "name": "Shortcut 1",
       "short_name": "Shortcut 1",
       "description": "Shortcut 1 description goes here...",
-      "url": "https://my-blog.blogspot.com/search/label/shortcut-1?utm_source=homescreen",
+      "url": "https://redesigned-ui.blogspot.com/search/label/shortcut-1?utm_source=homescreen",
       "icons": [
         {
           "src": "icons/android-chrome-96x96.png",
@@ -131,7 +131,7 @@
       "name": "Shortcut 2",
       "short_name": "Shortcut 2",
       "description": "Shortcut 2 description goes here...",
-      "url": "https://my-blog.blogspot.com/search/label/shortcut-2?utm_source=homescreen",
+      "url": "https://redesigned-ui.blogspot.com/search/label/shortcut-2?utm_source=homescreen",
       "icons": [
         {
           "src": "icons/android-chrome-96x96.png",
