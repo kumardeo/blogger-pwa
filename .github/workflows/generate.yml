@@ -1,6 +1,8 @@
-on: [push]
-
 name: Generate Bucket and Output
+
+on:
+  push:
+  repository_dispatch:
 
 env:
   NODE_VERSION: "20.14.0"
