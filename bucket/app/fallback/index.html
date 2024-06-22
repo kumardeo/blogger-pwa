@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--[ Meta Tags ]-->
+  <title>Something went wrong!</title>
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport" />
+  <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+
+  <!--[ Favicon ]-->
+  <link href="/app/icons/favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="/app/icons/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+  <!--[ Styles ]-->
+  <style>
+    *,
+    ::after,
+    ::before {
+      box-sizing: border-box;
+    }
+
+    /* Content */
+    body {
+      margin: 0;
+      background: #fafafa;
+      color: #1f1f1f;
+      font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+      font-weight: 400;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    body:focus {
+      outline: none !important;
+    }
+
+    .main-wrapper {
+      min-width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+    }
+
+    .container {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 15px;
+      border-radius: 12px;
+      background: #fff;
+      border: 1px solid #ebebeb;
+    }
+
+    .noIntIcon {
+      padding: 30px;
+    }
+
+    .noConHead {
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+
+    .noConDesc {
+      font-size: 16px;
+      line-height: 1.4em;
+      padding-top: 20px;
+      font-weight: 400;
+      opacity: 0.8;
+    }
+
+    .relCont {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .relCont {
+      padding: 30px;
+    }
+
+    .reload-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 66px;
+      height: 66px;
+      background-color: #fff;
+      outline: none;
+      border: 1px solid #ebebeb;
+      border-radius: 690px;
+      cursor: pointer;
+    }
+
+    .reload-button:hover {
+      background-color: #fafafa;
+    }
+
+    .icon {
+      content: "";
+      width: 25px;
+      height: 25px;
+      display: inline-block;
+    }
+
+    .icon-lg {
+      content: "";
+      width: 50px;
+      height: 50px;
+      display: inline-block;
+    }
+
+    .icon.reload {
+      background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239dabc0' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='23 4 23 10 17 10'/><path d='M20.49 15a9 9 0 1 1-2.12-9.36L23 10'/></svg>") center / 25px no-repeat;
+    }
+
+    .icon-lg.wifi-off {
+      background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231f1f1f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='1' y1='1' x2='23' y2='23'/><path d='M16.72 11.06A10.94 10.94 0 0 1 19 12.55'/><path d='M5 12.55a10.94 10.94 0 0 1 5.17-2.39'/><path d='M10.71 5.05A16 16 0 0 1 22.58 9'/><path d='M1.42 9a15.91 15.91 0 0 1 4.7-2.88'/><path d='M8.53 16.11a6 6 0 0 1 6.95 0'/><line x1='12' y1='20' x2='12.01' y2='20'/></svg>") center / 50px no-repeat;
+    }
+
+    @media screen and (min-width: 401px) {
+      .container {
+        min-width: 400px;
+      }
+    }
+
+    @media screen and (max-width: 400px) {
+      .container {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-wrapper notranslate">
+    <div class="container">
+      <div class="noIntIcon">
+        <i class="icon-lg wifi-off"></i>
+      </div>
+      <div class="noConHead">Something went wrong!</div>
+
+      <div class="relCont">
+        <button class="reload-button">
+          <i class="icon reload"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!--[ Script ]-->
+  <script>
+    document.querySelector(".reload-button")
+      .addEventListener("click", () => {
+        window.location.reload();
+      });
+    window.addEventListener("online", () => {
+      window.location.reload();
+    });
+  </script>
+</body>
+
+</html>

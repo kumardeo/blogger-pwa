@@ -1,21 +1,19 @@
-name = "pwa"
-main = "./src/index.ts"
-compatibility_date = "2023-10-10"
-minify = true
+name = "blogger-pwa"
+main = "./src/workers/index.ts"
+compatibility_date = "2024-06-22"
 compatibility_flags = [ "nodejs_compat" ]
 
 [dev]
-ip = "127.0.0.1"
 port = 8080
-local_protocol = "http"
 
 [site]
-bucket = "./public"
+bucket = "./bucket"
 
 [vars]
-ENVIRONMENT = "development"
+CF_ENV = "local"
 
 [env.production]
+minify = true
 routes = [
   # zone_name = "fineshopdesign.com"
   # Replace 'fineshopdesign.com' with your domain name (must be added in Cloudflare Account)
@@ -28,4 +26,4 @@ routes = [
 ]
 
 [env.production.vars]
-ENVIRONMENT = "production"
+CF_ENV = "production"
