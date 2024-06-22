@@ -2,7 +2,7 @@ import type { Config } from '@/types';
 
 const pwaConfig: Config = {
   version: '1.0',
-  name: 'My Blog',
+  name: 'My Blog 2',
   shortName: 'My Blog',
   description: 'My blog description goes here...',
   direction: 'auto',
