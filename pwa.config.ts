@@ -39,7 +39,7 @@ const pwaConfig: Config = {
     },
   },
   // This will be used if cdn is used
-  origin: 'https://my-blog.blogspot.com',
+  origin: 'https://redesigned-ui.blogspot.com',
 };
 
 export default pwaConfig;
