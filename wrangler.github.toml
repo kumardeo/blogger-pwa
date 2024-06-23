@@ -1,5 +1,5 @@
 #:schema node_modules/wrangler/config-schema.json
-name = "blogger-pwa-github"
+name = "blogger-pwa-github-local"
 main = "./src/workers/github-workers.ts"
 compatibility_date = "2024-06-22"
 compatibility_flags = [ "nodejs_compat" ]
@@ -12,6 +12,7 @@ port = 8080
 CF_ENV = "local"
 
 [env.production]
+name = "blogger-pwa-github"
 minify = true
 
 [env.production.vars]
