@@ -1,0 +1,143 @@
+{
+  "name": "My Blog",
+  "id": "/",
+  "short_name": "My Blog",
+  "description": "My blog description goes here...",
+  "version": "1.0",
+  "dir": "auto",
+  "lang": "en-US",
+  "orientation": "any",
+  "start_url": "https://my-blog.blogspot.com/?utm_source=homescreen",
+  "scope": "https://my-blog.blogspot.com/",
+  "display": "standalone",
+  "prefer_related_applications": false,
+  "background_color": "#fff",
+  "theme_color": "#fff",
+  "icons": [
+    {
+      "src": "icons/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "icons/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/android-chrome-36x36.png",
+      "sizes": "36x36",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/android-chrome-48x48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/android-chrome-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/android-chrome-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/android-chrome-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/android-chrome-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/android-chrome-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/screen-narrow-1.png",
+      "type": "image/png",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "screenshots/screen-narrow-2.png",
+      "type": "image/png",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "screenshots/screen-narrow-3.png",
+      "type": "image/png",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "screenshots/screen-wide-1.png",
+      "type": "image/png",
+      "sizes": "720x540",
+      "form_factor": "wide"
+    },
+    {
+      "src": "screenshots/screen-wide-2.png",
+      "type": "image/png",
+      "sizes": "720x540",
+      "form_factor": "wide"
+    },
+    {
+      "src": "screenshots/screen-wide-3.png",
+      "type": "image/png",
+      "sizes": "720x540",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Shortcut 1",
+      "short_name": "Shortcut 1",
+      "description": "Shortcut 1 description goes here...",
+      "url": "https://my-blog.blogspot.com/search/label/shortcut-1?utm_source=homescreen",
+      "icons": [
+        {
+          "src": "icons/android-chrome-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Shortcut 2",
+      "short_name": "Shortcut 2",
+      "description": "Shortcut 2 description goes here...",
+      "url": "https://my-blog.blogspot.com/search/label/shortcut-2?utm_source=homescreen",
+      "icons": [
+        {
+          "src": "icons/android-chrome-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

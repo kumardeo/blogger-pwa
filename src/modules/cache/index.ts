@@ -1,80 +1,95 @@
-import type { CacheFunction } from "./types";
+declare const caches: CacheStorage & { default: Cache };
 
-const cache: CacheFunction = async (
-  request,
-  context,
-  fallback,
-  userOptions = {}
-) => {
-  const defaultOptions = {
-    defaultEtag: "strong" as `strong`,
-    browserTTL: null,
-    edgeTTL: 2 * 60 * 60 * 24,
-    bypassCache: false
-  };
-  const options = { ...defaultOptions, ...userOptions };
+export type FallbackFunctionValue = Response | null | undefined;
 
-  // Helpers
-  const formatETag = (entityId: string, validatorType: "weak" | "strong") => {
-    let etag = entityId;
-    if (!etag) return "";
-    switch (validatorType) {
-      case "weak": {
-        if (!etag.startsWith("W/")) {
-          if (etag.startsWith(`"`) && etag.endsWith(`"`)) {
-            return `W/${etag}`;
-          }
-          return `W/"${etag}"`;
+export type FallbackFunction = (request: Request, context: ExecutionContext) => FallbackFunctionValue | Promise<FallbackFunctionValue>;
+
+export interface CacheOptions {
+  cache?: string | Cache;
+  cacheKey?: Request | ((defaultKey: Request) => Request);
+  etag?: string;
+  defaultEtag?: 'strong' | 'weak';
+  browserTTL?: number | null;
+  edgeTTL?: number | null;
+  bypassCache?: boolean;
+}
+
+/** Default etag */
+const DEFAULT_CACHE_ETAG = 'strong';
+
+/** Default cache options */
+const DEFAULT_CACHE_OPTIONS = {
+  defaultEtag: DEFAULT_CACHE_ETAG,
+  browserTTL: undefined,
+  edgeTTL: 2 * 60 * 60 * 24,
+  bypassCache: false,
+} as const;
+
+/** Gets cache options */
+const getCacheOptions = (options: CacheOptions | ((req: Request) => CacheOptions), request: Request): CacheOptions => {
+  const userOptions = typeof options === 'function' ? options(request) : options;
+
+  return { ...DEFAULT_CACHE_OPTIONS, ...userOptions };
+};
+
+/** Formats etag */
+const formatETag = (entityId: string, validatorType: 'weak' | 'strong' = DEFAULT_CACHE_ETAG) => {
+  let etag = entityId;
+  if (!etag) {
+    return '';
+  }
+  switch (validatorType) {
+    case 'weak': {
+      if (!etag.startsWith('W/')) {
+        if (etag.startsWith(`"`) && etag.endsWith(`"`)) {
+          return `W/${etag}`;
         }
-        return etag;
+        return `W/"${etag}"`;
       }
-      case "strong": {
-        if (etag.startsWith(`W/"`)) {
-          etag = etag.replace("W/", "");
-        }
-        if (!etag.endsWith(`"`)) {
-          etag = `"${etag}"`;
-        }
-        return etag;
-      }
-      default: {
-        return "";
-      }
+      return etag;
     }
-  };
+    case 'strong': {
+      if (etag.startsWith(`W/"`)) {
+        etag = etag.replace('W/', '');
+      }
+      if (!etag.endsWith(`"`)) {
+        etag = `"${etag}"`;
+      }
+      return etag;
+    }
+    default: {
+      return '';
+    }
+  }
+};
+
+export const cache = async <F extends FallbackFunction = FallbackFunction>(
+  request: Request,
+  context: ExecutionContext,
+  fallback: F,
+  options: CacheOptions = {},
+): Promise<Awaited<ReturnType<F>> extends Response ? Response : Response | null> => {
+  const cacheOptions = getCacheOptions(options, request);
 
   const requestMethod = request.method.toUpperCase();
-  if (!["GET", "HEAD"].includes(requestMethod)) {
+  if (!['GET', 'HEAD'].includes(requestMethod)) {
     throw new Error(`Request method ${requestMethod} cannot be cached`);
   }
 
-  const requestURL = new URL(request.url);
+  const shouldEdgeCache = !(cacheOptions.bypassCache || cacheOptions.edgeTTL === null || request.method === 'HEAD');
 
-  let cacheStorage: Cache = caches.default;
-  if (options.cache instanceof Cache) {
-    cacheStorage = options.cache;
-  } else if (typeof options.cache === "string") {
-    cacheStorage = await caches.open(options.cache);
-  }
-  const cacheKey =
-    typeof options.cacheKey === "function"
-      ? options.cacheKey(request)
-      : request;
+  const shouldSetBrowserCache = typeof cacheOptions.browserTTL === 'number';
 
-  const shouldEdgeCache = !(
-    options.bypassCache ||
-    options.edgeTTL === null ||
-    request.method === "HEAD"
-  );
-  const shouldSetBrowserCache = typeof options.browserTTL === "number";
+  const cacheStorage: Cache = typeof cacheOptions.cache === 'string' ? await caches.open(cacheOptions.cache) : cacheOptions.cache ?? caches.default;
 
-  let response: Response | null | undefined = shouldEdgeCache
-    ? await cacheStorage.match(cacheKey)
-    : undefined;
+  const cacheKey = typeof cacheOptions.cacheKey === 'function' ? cacheOptions.cacheKey(request) : cacheOptions.cacheKey ?? request;
+
+  let response: Response | null | undefined = shouldEdgeCache ? await cacheStorage.match(cacheKey) : undefined;
 
   if (response instanceof Response) {
+    console.log('Cache HIT: ', cacheKey.url);
     if (response.status > 300 && response.status < 400) {
-      if (response.body && "cancel" in Object.getPrototypeOf(response.body)) {
+      if (response.body && 'cancel' in Object.getPrototypeOf(response.body)) {
         // Body exists and environment supports readable streams
         await response.body.cancel();
       } else {
@@ -85,29 +100,30 @@ const cache: CacheFunction = async (
       const responseInit = {
         headers: new Headers(response.headers),
         status: 0,
-        statusText: ""
+        statusText: '',
       };
 
-      responseInit.headers.set("Cf-Cache-Status", "HIT");
+      responseInit.headers.set('Cf-Cache-Status', 'HIT');
 
       if (response.status) {
         responseInit.status = response.status;
         responseInit.statusText = response.statusText;
-      } else if (responseInit.headers.has("Content-Range")) {
+      } else if (responseInit.headers.has('Content-Range')) {
         responseInit.status = 206;
-        responseInit.statusText = "Partial Content";
+        responseInit.statusText = 'Partial Content';
       } else {
         responseInit.status = 200;
-        responseInit.statusText = "OK";
+        responseInit.statusText = 'OK';
       }
       response = new Response(response.body, responseInit);
     }
   } else {
-    const fallbackResponse = await fallback();
+    console.log('Cache MISS: ', cacheKey.url);
+    const fallbackResponse = await fallback(request, context);
     if (fallbackResponse instanceof Response) {
       response = fallbackResponse;
     } else {
-      return null;
+      return null as Awaited<ReturnType<F>> extends Response ? Response : Response | null;
     }
 
     // Skip caching if response status code is not >= 200 and < 400
@@ -116,44 +132,42 @@ const cache: CacheFunction = async (
     }
 
     if (shouldEdgeCache) {
-      const buffer = await response.clone().arrayBuffer();
-      response.headers.set("Accept-Ranges", "bytes");
-      response.headers.set("Content-Length", String(buffer.byteLength));
-      // set etag before cache insertion
-      if (!response.headers.has("Etag")) {
-        response.headers.set(
-          "Etag",
-          formatETag(requestURL.pathname, options.defaultEtag)
-        );
+      // const buffer = await response.clone().arrayBuffer();
+      response.headers.set('Accept-Ranges', 'bytes');
+      // response.headers.set("Content-Length", String(buffer.byteLength));
+      // Set Etag before cache insertion
+      if (!response.headers.has('Etag') && typeof options.etag === 'string') {
+        response.headers.set('Etag', formatETag(options.etag, cacheOptions.defaultEtag));
       }
-      // determine Cloudflare cache behavior
-      response.headers.set("Cache-Control", `max-age=${options.edgeTTL}`);
+      // Determine Cloudflare cache behavior
+      response.headers.set('Cache-Control', `max-age=${cacheOptions.edgeTTL as number}`);
       context.waitUntil(cacheStorage.put(cacheKey, response.clone()));
-      response.headers.set("CF-Cache-Status", "MISS");
+      response.headers.set('CF-Cache-Status', 'MISS');
     }
   }
 
   if (response.status === 304) {
-    let etag: null | string = response.headers.get("Etag");
-    if (etag) etag = formatETag(etag, options.defaultEtag);
-    const ifNoneMatch = cacheKey.headers.get("If-None-Match");
-    const proxyCacheStatus = response.headers.get("CF-Cache-Status");
+    let etag: null | string = response.headers.get('Etag');
     if (etag) {
-      if (ifNoneMatch && ifNoneMatch === etag && proxyCacheStatus === "MISS") {
-        response.headers.set("CF-Cache-Status", "EXPIRED");
+      etag = formatETag(etag, cacheOptions.defaultEtag);
+    }
+    const ifNoneMatch = cacheKey.headers.get('If-None-Match');
+    const proxyCacheStatus = response.headers.get('CF-Cache-Status');
+    if (etag) {
+      if (ifNoneMatch && ifNoneMatch === etag && proxyCacheStatus === 'MISS') {
+        response.headers.set('CF-Cache-Status', 'EXPIRED');
       } else {
-        response.headers.set("CF-Cache-Status", "REVALIDATED");
+        response.headers.set('CF-Cache-Status', 'REVALIDATED');
       }
-      response.headers.set("Etag", formatETag(etag, "weak"));
+      response.headers.set('Etag', formatETag(etag, 'weak'));
     }
   }
+
   if (shouldSetBrowserCache) {
-    response.headers.set("Cache-Control", `max-age=${options.browserTTL}`);
+    response.headers.set('Cache-Control', `max-age=${cacheOptions.browserTTL as number}`);
   } else {
-    response.headers.delete("Cache-Control");
+    response.headers.delete('Cache-Control');
   }
+
   return response;
 };
-
-export default cache;
-export * from "./types";

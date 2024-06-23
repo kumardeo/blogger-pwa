@@ -1,8 +1,3 @@
 {
-  "recommendations": [
-    "EditorConfig.EditorConfig",
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "mikestead.dotenv"
-  ]
+  "recommendations": ["EditorConfig.EditorConfig", "tamasfe.even-better-toml", "biomejs.biome"]
 }

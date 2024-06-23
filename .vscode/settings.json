@@ -1,5 +1,48 @@
 {
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "eslint.enable": false,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports.biome": "explicit"
+  },
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[jsonc]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[css]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features",
+    "editor.tabSize": 2
+  },
+  "javascript.validate.enable": false,
   "cSpell.words": [
+    "biomejs",
     "browserconfig",
     "chromeos",
     "compat",
@@ -10,8 +53,10 @@
     "fullscreen",
     "googlebot",
     "homescreen",
+    "hono",
     "itty",
     "Kumar",
+    "kumardeo",
     "metatags",
     "mstile",
     "nodisplay",
@@ -19,11 +64,7 @@
     "precache",
     "precaching",
     "serviceworker",
-    "tsbuildinfo"
-  ],
-  "editor.formatOnSave": true,
-  "typescript.tsdk": "node_modules\\typescript\\lib",
-  "files.associations": {
-    "*.toml": "dotenv"
-  }
+    "tsbuildinfo",
+    "tsup"
+  ]
 }

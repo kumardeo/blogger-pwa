@@ -1,0 +1,61 @@
+name: Push Generated Bucket and Deploy
+
+on:
+  push:
+  create:
+  repository_dispatch:
+
+env:
+  NODE_VERSION: "20.14.0"
+  NPM_VERSION: "10.7.0"
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+      deployments: write
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+        # Install node
+      - name: Setup Node.js v${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+        # Install npm
+      - name: Setup NPM v${{ env.NPM_VERSION }}
+        run: npm install -g npm@${{ env.NPM_VERSION }}
+
+        # Install the dependencies
+      - name: Install Dependencies
+        run: npm install
+
+        # Generate bucket and outout files to proceed further
+      - name: Generate Bucket and Output
+        run: npm run generate -- --repository=${{ github.repository }} --branch=${{ github.head_ref || github.ref_name }}
+
+        # Deploy to cloudflare workers if default branch and required secrets exists
+      - name: Deploy to Cloudflare Workers
+        if: ${{ ((github.head_ref || github.ref_name) == github.event.repository.default_branch) && (env.CLOUDFLARE_ACCOUNT_ID != '') && (env.CLOUDFLARE_API_TOKEN != '') }}
+        run: |
+          npx wrangler deploy --config wrangler.kv.toml --env production
+          npx wrangler deploy --config wrangler.github.toml --env production
+
+        # Commit all changed files back to the repository
+      - name: Push Generated Bucket and Output
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          repository: .
+          commit_options: "--allow-empty"
+          commit_message: |
+            update: generated bucket and output
+            Triggered by ${{ github.sha }}
