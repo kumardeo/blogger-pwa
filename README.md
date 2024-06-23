@@ -155,6 +155,27 @@ export default pwaConfig;
 | `preferRelatedApplications` |                                   `boolean`                                    |        `false`         |    no    | Prefer related application or not?                          |
 |         `shortcuts`         | `Array<{ name: string, shortName: string, description: string, url: string }>` |          `[]`          |    no    | List of all shortcuts of the app                            |
 
+##### OneSignal Integration
+
+If you are using Cloudflare Workers, you can integrate OneSignal push notification. Follow the given steps:
+
+> **Warning**: Not applicable for AMP templates since it uses OneSignal JavaScript SDK.
+
+* Go to [OneSignal Dashboard](https://dashboard.onesignal.com).
+* Go to your existing Web App or Create a new App using their Documentation.
+* Go to the App settings.
+* Select **Typical Site** in **Choose Integration** Settings.
+* Toggle On **Service Workers** in **Advance Push Settings**.
+* Input the fields as given below:
+  * **Path to service worker files**: `/app/`
+  * **Main service worker filename**: `onesignalworker.js`
+  * **Updater service worker filename**: `onesignalworker.js`
+  * **Service worker registration scope**: `/app/onesignal/`
+* Find App's `App Id` and note it down.
+* Add your `App Id` in `pwa.config.ts` file and commit the changes.
+
+> **Warning**: Do not add any code provided by OneSignal in the Template XML because I have already added it as per requirement in `pwa.js`.
+
 ### Edit Blogger Theme XML
 
 After making the all the above changes, workflows will run and it will commit new changes with a message `update: generated bucket and output`, please wait for all the jobs to complete.
@@ -208,7 +229,7 @@ Save changes, and visit your blog!
 
 You may want to add a custom button on your site which shows the installation prompt on click. You can use the following css and javascript codes to create a beautiful install button.
 
-> **Warning** You should not use it if you are using an AMP template.
+> **Warning**: You should not use it if you are using an AMP template.
 
 1. Add the following css in Template XML just above to `</head>`:
 
