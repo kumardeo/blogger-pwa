@@ -58,6 +58,8 @@ If you want to use Cloudflare Workers, you can follow the following steps otherw
 If you don't want to use Cloudflare Worker, then follow these steps:
 
 * [Fork this repository](https://github.com/kumardeo/blogger-pwa/fork).
+* Go to forked repository. Go to **Actions** tab.
+* Enable workflows by clicking on **I understand my workflows, go ahead and enable them**.
 
 ### Making Changes
 
