@@ -39,7 +39,7 @@ const pwaConfig: Config = {
     },
   },
   // Please replace with your blog url if you are using CDN (JsDelivr)
-  origin: 'https://my-blog.blogspot.com',
+  origin: 'https://hello-example.blogspot.com',
 };
 
 export default pwaConfig;
