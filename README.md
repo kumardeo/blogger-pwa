@@ -44,10 +44,16 @@ Follow the steps below based upon your choice.
 
 If you want to use Cloudflare Workers, you can follow the following steps otherwise skip it:
 
+
 * Deploy the workers by clicking on the following button, this will **fork this repository** and deploy workers in your Cloudflare account for you:
   
   [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/kumardeo/blogger-pwa)
-* Note that it will fork this repository in your Github account.
+  * You need your Cloudflare Account ID and a Cloudflare API Token with `Edit Workers` permission.
+  * You can find your Cloudflare Account ID by navigating to [Workers Dashboard](https://dash.cloudflare.com/?to=/:account/workers). It will be available in the right sidebar.
+  * You can create an Cloudflare API Token with `Edit Workers` permission by navigating to [My Profile](https://dash.cloudflare.com/profile/api-tokens).  
+    Click on **Create Token**.  
+    Use `Edit Cloudflare Workers` template.
+* Note that this will fork this repository in your Github account.
 * After deploying the workers, create a route:
   * Go to **Websites** section in Cloudflare Dashboard and select your domain.
   * Now go to **Workers Routes** section and then click on **Add Route** and input:</li>
@@ -164,7 +170,7 @@ Add the codes specified in next steps.
 
 * Find the following file in your forked repository based on conditions:
   * If you are using Cloudflare workers: `output/pwa-metatags.html` or `output/pwa-metatags-no-splash.html`
-  * If you are not using Cloudflare workers: `output/cdn-metatags.html` or `output/pwa-metatags-no-splash.html`
+  * If you are not using Cloudflare workers: `output/cdn-metatags.html` or `output/cdn-metatags-no-splash.html`
 * Copy all the contents of above file based on your selection and paste it below `<head>`, if you didn't find it, it would have been probably parsed which is `&lt;head&gt;`.
 * Delete existing similar codes.
 
