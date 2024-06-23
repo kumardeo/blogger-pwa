@@ -1,6 +1,6 @@
-# Blogger PWA using Cloudflare Workers
+# Blogger PWA
 
-Build a PWA for your Blogger Site using Cloudflare Workers and KV Store.
+Build a PWA for your Blogger site.
 
 ## Highlights
 
@@ -24,9 +24,9 @@ Build a PWA for your Blogger Site using Cloudflare Workers and KV Store.
     `screenshot-narrow-3.png`  
     ..and so on..
   * At least 3 screenshots for `wide` screen devices of size `720x540`. Name them in series:  
-    `screenshot-narrow-1.png`  
-    `screenshot-narrow-2.png`  
-    `screenshot-narrow-3.png`  
+    `screenshot-wide-1.png`  
+    `screenshot-wide-2.png`  
+    `screenshot-wide-3.png`  
     ..and so on..
 
 ## Installing PWA
