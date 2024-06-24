@@ -148,7 +148,7 @@ export const getManifest = ({
           ),
       }
     : {}),
-  ...(preferRelatedApplications === true
+  ...(preferRelatedApplications
     ? {
         related_applications: relatedApplications.filter(Boolean).map(({ id = '', url = '/', platform = 'play' }) => ({
           ...(id ? { id } : undefined),

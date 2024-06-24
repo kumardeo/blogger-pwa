@@ -4,37 +4,37 @@ Build a PWA for your Blogger site.
 
 ## Highlights
 
-* Automation
-  * Automatically updates and push changes to `bucket` and `output` directory when changes are made in `uploads` directory or `pwa.config.ts` file using Github actions.
-* Automatic Generation
-  * Automatically generates different size icons from single `favicon.png` and push it.
-  * Automatically generates all the required files with a single config file `pwa.config.ts` and push it.
-* Any Blogger Site
-  * You can build PWA for your `blogspot.com` sites.
+1. **Automation**
+   * Automatically updates and push changes to `bucket` and `output` directory when changes are made in `uploads` directory or `pwa.config.ts` file using Github actions.
+2. **Automatic Generation**
+   * Automatically generates different size icons from single `favicon.png` and push it.
+   * Automatically generates all the required files with a single config file `pwa.config.ts` and push it.
+3. **Any Blogger Site**
+   * You can build PWA for your `blogspot.com` sites.
 
 ## Requirements
 
-* A Github account.
-* Prepare an icon for your blog in `.png` extension with a minimum size of `512x512`.  
-  Rename the file as `favicon.png`.
-* Prepare few screenshots of your webpages in `.png` extension.  
-  * At least 3 screenshots for `narrow` screen devices of size `540x720`. Name them in series:  
-    `screenshot-narrow-1.png`  
-    `screenshot-narrow-2.png`  
-    `screenshot-narrow-3.png`  
-    ..and so on..
-  * At least 3 screenshots for `wide` screen devices of size `720x540`. Name them in series:  
-    `screenshot-wide-1.png`  
-    `screenshot-wide-2.png`  
-    `screenshot-wide-3.png`  
-    ..and so on..
+1. A Github account.
+2. Prepare an icon for your blog in `.png` extension with a minimum size of `512x512`.  
+   Rename the file as `favicon.png`.
+3. Prepare few screenshots of your webpages in `.png` extension.  
+   * At least 3 screenshots for `narrow` screen devices of size `540x720`. Name them in series:  
+     `screenshot-narrow-1.png`  
+     `screenshot-narrow-2.png`  
+     `screenshot-narrow-3.png`  
+     ..and so on..
+   * At least 3 screenshots for `wide` screen devices of size `720x540`. Name them in series:  
+     `screenshot-wide-1.png`  
+     `screenshot-wide-2.png`  
+     `screenshot-wide-3.png`  
+     ..and so on..
 
 ## Installing PWA
 
 There are two ways of installing PWA:
 
-* **Using Cloudflare Workers**: Supports Offline Page and OneSignal push notification integration.
-* **Using JsDelivr**: Does not support Offline Page and OneSignal push notification integration.
+1. **Using Cloudflare Workers**: Supports Offline Page and OneSignal push notification integration.
+2. **Using JsDelivr**: Does not support Offline Page and OneSignal push notification integration.
 
 If your DNS is not managed by Cloudflare or you are using `blogspot.com` subdomain, you need to use the second method.
 
@@ -44,28 +44,27 @@ Follow the steps below based upon your choice.
 
 If you want to use Cloudflare Workers, you can follow the following steps otherwise skip it:
 
-
-* Deploy the workers by clicking on the following button, this will **fork this repository** and deploy workers in your Cloudflare account for you:
+1. Deploy the workers by clicking on the following button, this will **fork this repository** and deploy workers in your Cloudflare account for you:
   
-  [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/kumardeo/blogger-pwa)
-  * You need your Cloudflare Account ID and a Cloudflare API Token with `Edit Workers` permission.
-  * You can find your Cloudflare Account ID by navigating to [Workers Dashboard](https://dash.cloudflare.com/?to=/:account/workers). It will be available in the right sidebar.
-  * You can create an Cloudflare API Token with `Edit Workers` permission by navigating to [My Profile](https://dash.cloudflare.com/profile/api-tokens).  
-    Click on **Create Token**.  
-    Use `Edit Cloudflare Workers` template.
-* Note that this will fork this repository in your Github account.
-* After deploying the workers, create a route:
-  * Go to **Websites** section in Cloudflare Dashboard and select your domain.
-  * Now go to **Workers Routes** section and then click on **Add Route** and input:</li>
-  * **Routes**: `www.your-domain.com/app/*`, make sure to use your domain and subdomain.
-  * **Service**: Select `blogger-pwa-kv` workers if you want to use Cloudflare KV, `blogger-pwa-github` workers if you want to fetch assets from github repository (Repository must be public).
-  * **Environment**: `production`
+   [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/kumardeo/blogger-pwa)
+   * You need your Cloudflare Account ID and a Cloudflare API Token with `Edit Workers` permission.
+   * You can find your Cloudflare Account ID by navigating to [Workers Dashboard](https://dash.cloudflare.com/?to=/:account/workers). It will be available in the right sidebar.
+   * You can create an Cloudflare API Token with `Edit Workers` permission by navigating to [My Profile](https://dash.cloudflare.com/profile/api-tokens).  
+     Click on **Create Token**.  
+     Use `Edit Cloudflare Workers` template.
+   * Note that it will fork this repository in your Github account.
+2. After deploying the workers, we need to create a workers route.
+3. Go to **Websites** section in Cloudflare Dashboard and select your domain.
+4. Now go to **Workers Routes** section and then click on **Add Route** and input the fields as shown:
+   * **Routes**: `www.your-domain.com/app/*`, make sure to use your domain and subdomain.
+   * **Service**: Select `blogger-pwa-kv` workers if you want to use Cloudflare KV, `blogger-pwa-github` workers if you want to fetch assets from github repository (Repository must be public).
+   * **Environment**: `production`
 
 If you don't want to use Cloudflare Worker, then follow these steps:
 
-* [Fork this repository](https://github.com/kumardeo/blogger-pwa/fork).
-* Go to forked repository. Go to **Actions** tab.
-* Enable workflows by clicking on **I understand my workflows, go ahead and enable them**.
+1. [Fork this repository](https://github.com/kumardeo/blogger-pwa/fork).
+2. Go to forked repository. Go to **Actions** tab.
+3. Enable workflows by clicking on **I understand my workflows, go ahead and enable them**.
 
 ### Making Changes
 
@@ -73,14 +72,14 @@ Now whenever you commit any changes to the repository, this will redeploy your w
 
 #### Uploading Favicon
 
-* Go to the forked repository.
-* Upload your `favicon.png` that you have created earlier in `uploads` directory.
+1. Go to the forked repository.
+2. Upload your `favicon.png` that you have created earlier in `uploads` directory.
 
 #### Uploading Screenshots
 
-* Go to the forked repository.
-* Upload your **narrow** screen preview screenshots of size `540x720` in `uploads/screenshots/narrow` directory.
-* Upload your **wide** screen preview screenshots of size `720x540` in `uploads/screenshots/wide` directory.
+1. Go to the forked repository.
+2. Upload your **narrow** screen preview screenshots of size `540x720` in `uploads/screenshots/narrow` directory.
+3. Upload your **wide** screen preview screenshots of size `720x540` in `uploads/screenshots/wide` directory.
 
 #### Configuring App
 
@@ -128,7 +127,7 @@ const pwaConfig: Config = {
     },
   },
   // Please replace with your blog url if you are using CDN (JsDelivr)
-  origin: 'https://my-blog.blogspot.com',
+  origin: 'https://hello-example.blogspot.com',
 };
 
 export default pwaConfig;
@@ -161,67 +160,72 @@ If you are using Cloudflare Workers, you can integrate OneSignal push notificati
 
 > **Warning**: Not applicable for AMP templates since it uses OneSignal JavaScript SDK.
 
-* Go to [OneSignal Dashboard](https://dashboard.onesignal.com).
-* Go to your existing Web App or Create a new App using their Documentation.
-* Go to the App settings.
-* Select **Typical Site** in **Choose Integration** Settings.
-* Toggle On **Service Workers** in **Advance Push Settings**.
-* Input the fields as given below:
-  * **Path to service worker files**: `/app/`
-  * **Main service worker filename**: `onesignalworker.js`
-  * **Updater service worker filename**: `onesignalworker.js`
-  * **Service worker registration scope**: `/app/onesignal/`
-* Find App's `App Id` and note it down.
-* Add your `App Id` in `pwa.config.ts` file and commit the changes.
+1. Go to [OneSignal Dashboard](https://dashboard.onesignal.com).
+2. Go to your existing Web App or Create a new App using their Documentation.
+3. Go to the App settings.
+4. Select **Typical Site** in **Choose Integration** Settings.
+5. Toggle On **Service Workers** in **Advance Push Settings**.
+6. Input the fields as given below:
+   * **Path to service worker files**: `/app/`
+   * **Main service worker filename**: `onesignalworker.js`
+   * **Updater service worker filename**: `onesignalworker.js`
+   * **Service worker registration scope**: `/app/onesignal/`
+7. Find App's `App Id` and note it down.
+8. Add your `App Id` in `pwa.config.ts` file and commit the changes.
+9. Also set `oneSignalEnabled` to `true`.
 
 > **Warning**: Do not add any code provided by OneSignal in the Template XML because I have already added it as per requirement in `pwa.js`.
 
 ### Edit Blogger Theme XML
 
-After making the all the above changes, workflows will run and it will commit new changes with a message `update: generated bucket and output`, please wait for all the jobs to complete.
+After making all the above changes, workflows will run and it will commit new changes with a message `update: generated bucket and output`, please wait for all the jobs to complete.
 
 Now, it's time to edit your blogger theme XML and add required codes.
 
-* Go Blogger Dashboard. Go to Theme section.
-* Click on Edit HTML.
+1. Go Blogger Dashboard. Go to Theme section.
+2. Click on Edit HTML.
 
 Add the codes specified in next steps.
 
 #### Add Meta Tags
 
-* Find the following file in your forked repository based on conditions:
-  * If you are using Cloudflare workers: `output/pwa-metatags.html` or `output/pwa-metatags-no-splash.html`
-  * If you are not using Cloudflare workers: `output/cdn-metatags.html` or `output/cdn-metatags-no-splash.html`
-* Copy all the contents of above file based on your selection and paste it below `<head>`, if you didn't find it, it would have been probably parsed which is `&lt;head&gt;`.
-* Delete existing similar codes.
+1. Find the following file in your forked repository based on conditions:
+   * If you are using Cloudflare workers:  
+     `output/pwa-metatags.html` or  
+     `output/pwa-metatags-no-splash.html`
+   * If you are not using Cloudflare workers:  
+     `output/cdn-metatags.html` or  
+     `output/cdn-metatags-no-splash.html`
+2. Copy all the contents of above file based on your selection and paste it below `<head>`, if you didn't find it, it would have been probably parsed which is `&lt;head&gt;`.
+3. Delete existing similar codes.
 
 #### AMP Template
 
 Follow these steps only if you are using an AMP template and Cloudflare Workers otherwise skip it.
 
-* Add the following code just below the meta tags you have added in previous steps:
+1. Add the following code just below the meta tags you have added in previous steps:
   
-  ```html
-  <script async='async' custom-element='amp-install-serviceworker' src='https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js'/>
-  ```
+   ```html
+   <script async='async' custom-element='amp-install-serviceworker' src='https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js'/>
+   ```
 
-* Paste the following codes above to `</body>`:
+2. Paste the following codes above to `</body>`:
 
-  ```html
-  <amp-install-serviceworker data-iframe-src='/app/fallback/' layout='nodisplay' src='/app/serviceworker.js'/>
-  ```
+   ```html
+   <amp-install-serviceworker data-iframe-src='/app/fallback/' layout='nodisplay' src='/app/serviceworker.js'/>
+   ```
 
 #### Non-AMP Template
 
 Follow these steps only if you are using a Non-AMP template and Cloudflare Workers otherwise skip it.
 
-* Add the following code just below the meta tags you have added in previous steps:
+1. Add the following code just below the meta tags you have added in previous steps:
 
-  ```html
-  <!--[ Start: Progressive Web App Script ]-->
-  <script async='' defer='' type='module' src='/app/pwa.js'></script>
-  <!--[ End: Progressive Web App Script ]-->
-  ```
+   ```html
+   <!--[ Start: Progressive Web App Script ]-->
+   <script async='' defer='' type='module' src='/app/pwa.js'></script>
+   <!--[ End: Progressive Web App Script ]-->
+   ```
 
 Save changes, and visit your blog!
 

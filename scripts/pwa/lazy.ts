@@ -14,9 +14,7 @@ let promise: {
   resolve() {},
 };
 
-/**
- * A promise which resolves on user interaction based on localStorage
- */
+/** A promise which resolves on user interaction based on localStorage */
 // @ts-expect-error define properties
 export const lazy: Promise<LazyDetails> & {
   lazied: boolean;
