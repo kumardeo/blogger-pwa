@@ -1,22 +1,19 @@
 import { GithubAssets } from '@/modules/github-assets';
 import { Hono } from 'hono';
-import { metadata } from '../../scripts/metadata';
+import { metadata } from '../../metadata';
 
 type HonoContext = {
   Bindings: CloudflareEnv;
   Variables: {
     github: GithubAssets;
-    cache: Cache;
   };
 };
 
 const app = new Hono<HonoContext>()
   .use(async (c, next) => {
     const github = new GithubAssets(c.executionCtx, metadata.github.repository, metadata.github.branch);
-    const cache = await caches.open(`build_cache_${metadata.build.hash}`);
 
     c.set('github', github);
-    c.set('cache', cache);
 
     await next();
   })

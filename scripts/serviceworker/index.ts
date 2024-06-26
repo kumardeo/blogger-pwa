@@ -6,7 +6,7 @@ import { CacheFirst, NetworkOnly } from 'workbox-strategies';
 
 declare const self: ServiceWorkerGlobalScope;
 
-/** Configurations for PWA App */
+/** Configurations for serviceworker */
 const config = {
   app: {
     name: 'blogger-pwa',

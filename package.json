@@ -10,12 +10,12 @@
   },
   "homepage": "https://github.com/kumardeo/blogger-pwa",
   "repository": {
-		"type": "git",
-		"url": "https://github.com/kumardeo/blogger-pwa"
-	},
-	"bugs": {
-		"url": "https://github.com/kumardeo/blogger-pwa/issues"
-	},
+    "type": "git",
+    "url": "https://github.com/kumardeo/blogger-pwa"
+  },
+  "bugs": {
+    "url": "https://github.com/kumardeo/blogger-pwa/issues"
+  },
   "type": "module",
   "scripts": {
     "check": "biome check .",
@@ -31,14 +31,13 @@
   },
   "dependencies": {
     "deepmerge": "^4.3.1",
-    "hono": "^4.4.7",
+    "hono": "^4.4.8",
     "mime": "^4.0.3"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.2",
     "@cloudflare/workers-types": "^4.20240620.0",
-    "@types/node": "^20.14.8",
-    "@types/workbox-sw": "^4.3.7",
+    "@types/node": "^20.14.9",
     "arg": "^5.0.2",
     "console-log-colors": "^0.5.0",
     "esbuild": "^0.21.5",
@@ -52,7 +51,7 @@
     "workbox-precaching": "^7.1.0",
     "workbox-routing": "^7.1.0",
     "workbox-strategies": "^7.1.0",
-    "wrangler": "^3.61.0",
+    "wrangler": "^3.62.0",
     "xml-js": "^1.6.11"
   }
 }

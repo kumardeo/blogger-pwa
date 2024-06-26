@@ -1,6 +1,6 @@
-import type { Config } from '@/types';
+import type { Config } from './types';
 
-const pwaConfig: Config = {
+export default {
   version: '1.0',
   name: 'My Blog',
   shortName: 'My Blog',
@@ -40,6 +40,4 @@ const pwaConfig: Config = {
   },
   // Please replace with your blog url if you are using CDN (JsDelivr)
   origin: 'https://hello-example.blogspot.com',
-};
-
-export default pwaConfig;
+} satisfies Config;

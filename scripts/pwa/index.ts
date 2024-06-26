@@ -1,4 +1,4 @@
-import { metadata } from '../metadata';
+import { metadata } from '../../metadata';
 import { lazy } from './lazy';
 
 declare global {
@@ -24,8 +24,8 @@ export const groupLog = (title: string | string[], logs: (unknown | unknown[])[]
 if ('serviceWorker' in navigator) {
   /** Register Workbox Service Worker */
   navigator.serviceWorker
-    .register(config.serviceWorker, {
-      scope: '/',
+    .register(config.serviceWorker.source, {
+      scope: config.serviceWorker.scope,
     })
     .then((registration) => {
       const logs: string[][] = [];

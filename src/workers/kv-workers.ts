@@ -1,6 +1,6 @@
 import assetsManifest from '__STATIC_CONTENT_MANIFEST';
 import { Hono } from 'hono';
-import { metadata } from '../../scripts/metadata';
+import { metadata } from '../../metadata';
 import { AssetsFetcher } from '../modules/assets-fetcher';
 
 type HonoContext = {

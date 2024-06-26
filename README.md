@@ -86,9 +86,9 @@ Now whenever you commit any changes to the repository, this will redeploy your w
 You can now configure your PWA by making changes in `pwa.config.ts` file.
 
 ```ts
-import type { Config } from '@/types';
+import type { Config } from './types';
 
-const pwaConfig: Config = {
+export default {
   version: '1.0',
   name: 'My Blog',
   shortName: 'My Blog',
@@ -128,29 +128,26 @@ const pwaConfig: Config = {
   },
   // Please replace with your blog url if you are using CDN (JsDelivr)
   origin: 'https://hello-example.blogspot.com',
-};
-
-export default pwaConfig;
+} satisfies Config;
 ```
 
 **Description**:
 
 |             key             |                                      type                                      |     default value      | required | description                                                 |
 | :-------------------------: | :----------------------------------------------------------------------------: | :--------------------: | :------: | :---------------------------------------------------------- |
-|          `version`          |                                    `string`                                    |        `"1.0"`         |   yes    | Version of your app                                         |
-|           `name`            |                                    `string`                                    |       `"My App"`       |   yes    | Name of your app (Blog name)                                |
-|         `shortName`         |                                    `string`                                    | `"My App Short Name"`  |   yes    | Short name of your app                                      |
-|        `description`        |                                    `string`                                    | `"My App description"` |   yes    | Description of your app                                     |
-|         `direction`         |                           `"auto" \| "ltr" \| "rtl"`                           |        `"auto"`        |    no    | Direction of your app                                       |
-|         `language`          |                                    `string`                                    |       `"en-US"`        |    no    | Language of your app                                        |
-|      `backgroundColor`      |                                    `string`                                    |        `"#fff"`        |    no    | Background color of the app                                 |
-|        `themeColor`         |                                    `string`                                    |        `"#fff"`        |    no    | Theme color of the app                                      |
-|          `display`          |          `"fullscreen" \| "standalone" \| "minimal-ui" \| "browser"`           |     `"standalone"`     |    no    | Display mode of the app                                     |
-|        `orientation`        |               `"any" \| "natural" \| "portrait" \| "landscape"`                |        `"any"`         |    no    | Orientation of the app                                      |
-|           `scope`           |                                    `string`                                    |         `"/"`          |    no    | Scope of the app                                            |
-|         `startUrl`          |                                    `string`                                    |         `"/"`          |    no    | Url to open when app is launched                            |
-|      `screenshotSize`       |                                    `string`                                    |      `"540x720"`       |    no    | Size of the screenshot                                      |
-|    `appleStatusBarStyle`    |                 `"black-translucent" \| "default" \| "black"`                  | `"black-translucent"`  |    no    | Content of `apple-mobile-web-app-status-bar-style` meta tag |
+|          `version`          |                                    `string`                                    |        `'1.0'`         |   yes    | Version of your app                                         |
+|           `name`            |                                    `string`                                    |       `'My App'`       |   yes    | Name of your app (Blog name)                                |
+|         `shortName`         |                                    `string`                                    | `'My App Short Name'`  |   yes    | Short name of your app                                      |
+|        `description`        |                                    `string`                                    | `'My App description'` |   yes    | Description of your app                                     |
+|         `direction`         |                           `'auto' \| 'ltr' \| 'rtl'`                           |        `'auto'`        |    no    | Direction of your app                                       |
+|         `language`          |                                    `string`                                    |       `'en-US'`        |    no    | Language of your app                                        |
+|      `backgroundColor`      |                                    `string`                                    |        `'#fff'`        |    no    | HEX background color of the app                             |
+|        `themeColor`         |                                    `string`                                    |        `'#fff'`        |    no    | HEX theme color of the app                                  |
+|          `display`          |          `'fullscreen' \| 'standalone' \| 'minimal-ui' \| 'browser'`           |     `'standalone'`     |    no    | Display mode of the app                                     |
+|        `orientation`        |               `'any' \| 'natural' \| 'portrait' \| 'landscape'`                |        `'any'`         |    no    | Orientation of the app                                      |
+|           `scope`           |                                    `string`                                    |         `'/'`          |    no    | Scope of the app                                            |
+|         `startUrl`          |                                    `string`                                    |         `'/'`          |    no    | Url to open when app is launched                            |
+|    `appleStatusBarStyle`    |                 `'black-translucent' \| 'default' \| 'black'`                  | `'black-translucent'`  |    no    | Content of `apple-mobile-web-app-status-bar-style` meta tag |
 | `preferRelatedApplications` |                                   `boolean`                                    |        `false`         |    no    | Prefer related application or not?                          |
 |         `shortcuts`         | `Array<{ name: string, shortName: string, description: string, url: string }>` |          `[]`          |    no    | List of all shortcuts of the app                            |
 
@@ -158,7 +155,8 @@ export default pwaConfig;
 
 If you are using Cloudflare Workers, you can integrate OneSignal push notification. Follow the given steps:
 
-> **Warning**: Not applicable for AMP templates since it uses OneSignal JavaScript SDK.
+> [!WARNING]
+> Not applicable for AMP templates since it uses OneSignal JavaScript SDK.
 
 1. Go to [OneSignal Dashboard](https://dashboard.onesignal.com).
 2. Go to your existing Web App or Create a new App using their Documentation.
@@ -174,7 +172,8 @@ If you are using Cloudflare Workers, you can integrate OneSignal push notificati
 8. Add your `App Id` in `pwa.config.ts` file and commit the changes.
 9. Also set `oneSignalEnabled` to `true`.
 
-> **Warning**: Do not add any code provided by OneSignal in the Template XML because I have already added it as per requirement in `pwa.js`.
+> [!WARNING]
+> Do not add any code provided by OneSignal in the Template XML because I have already added it as per requirement in `pwa.js`.
 
 ### Edit Blogger Theme XML
 
@@ -233,7 +232,8 @@ Save changes, and visit your blog!
 
 You may want to add a custom button on your site which shows the installation prompt on click. You can use the following css and javascript codes to create a beautiful install button.
 
-> **Warning**: You should not use it if you are using an AMP template.
+> [!WARNING]
+> You should not use it if you are using an AMP template.
 
 1. Add the following css in Template XML just above to `</head>`:
 
