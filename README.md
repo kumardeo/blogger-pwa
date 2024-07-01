@@ -90,6 +90,7 @@ import type { Config } from './types';
 
 export default {
   version: '1.0',
+  id: '/',
   name: 'My Blog',
   shortName: 'My Blog',
   description: 'My blog description goes here...',
@@ -136,6 +137,7 @@ export default {
 |             key             |                                      type                                      |     default value      | required | description                                                 |
 | :-------------------------: | :----------------------------------------------------------------------------: | :--------------------: | :------: | :---------------------------------------------------------- |
 |          `version`          |                                    `string`                                    |        `'1.0'`         |   yes    | Version of your app                                         |
+|            `id`             |                                    `string`                                    |         `'/'`          |    no    | Id of your app                                              |
 |           `name`            |                                    `string`                                    |       `'My App'`       |   yes    | Name of your app (Blog name)                                |
 |         `shortName`         |                                    `string`                                    | `'My App Short Name'`  |   yes    | Short name of your app                                      |
 |        `description`        |                                    `string`                                    | `'My App description'` |   yes    | Description of your app                                     |
@@ -150,6 +152,7 @@ export default {
 |    `appleStatusBarStyle`    |                 `'black-translucent' \| 'default' \| 'black'`                  | `'black-translucent'`  |    no    | Content of `apple-mobile-web-app-status-bar-style` meta tag |
 | `preferRelatedApplications` |                                   `boolean`                                    |        `false`         |    no    | Prefer related application or not?                          |
 |         `shortcuts`         | `Array<{ name: string, shortName: string, description: string, url: string }>` |          `[]`          |    no    | List of all shortcuts of the app                            |
+|          `origin`           |                                    `string`                                    |      `undefined`       |    no    | The origin of your blog (required when using CDN)           |
 
 ##### OneSignal Integration
 

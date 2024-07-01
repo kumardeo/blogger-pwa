@@ -26,6 +26,7 @@ export type PWAConfig = {
 
 export type Config = {
   version?: string;
+  id?: string;
   name: string;
   shortName: string;
   description: string;

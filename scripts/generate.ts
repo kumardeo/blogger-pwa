@@ -196,7 +196,8 @@ if (screenshots.length !== 0) {
 
 /* Write manifest json */
 log(clc.blue('\nGenerating (manifest.json)...'));
-const commonManifestOptions = {
+const commonManifestOptions: Parameters<typeof getManifest>[0] = {
+  id: options.id,
   name: options.name,
   shortName: options.shortName,
   description: options.description,
