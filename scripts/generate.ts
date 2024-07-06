@@ -6,7 +6,7 @@ import merge from 'deepmerge';
 import { build } from 'esbuild';
 import { favicons } from 'favicons';
 import { nanoid } from 'nanoid';
-import { metadata } from '../metadata';
+import { type Metadata, metadata } from '../metadata';
 import USER_CONFIG from '../pwa.config';
 import type { Config } from '../types';
 import { getBrowserConfig } from './browserconfig';
@@ -77,6 +77,36 @@ log(clc.redBright('-----------------------------------------\n'));
 
 /* Write metadata ts */
 log(clc.blue('Generating (metadata)...'));
+const updatedMetadata: Metadata = {
+  github: {
+    repository: GITHUB_REPO,
+    branch: GITHUB_BRANCH,
+  },
+  pwa: merge(
+    {
+      oneSignalEnabled: false,
+      oneSignalSDK: 'https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js',
+      oneSignalConfig: {
+        appId: '<appId>',
+        allowLocalhostAsSecureOrigin: true,
+      },
+      logs: true,
+    },
+    {
+      ...options.pwa,
+      oneSignalConfig: {
+        ...options.pwa?.oneSignalConfig,
+      },
+      serviceWorker: {
+        source: '/app/serviceworker.js',
+        scope: '/',
+      },
+    },
+  ),
+  build: {
+    hash: BUILD_HASH,
+  },
+};
 const metadataTs = `/**
  * This is auto generated metadata file, generated at: ${new Date().toString()}
  * Prevent making any changes here
@@ -106,32 +136,7 @@ export interface Metadata {
 }
 
 export const metadata = JSON.parse(
-  '${JSON.stringify({
-    github: {
-      repository: GITHUB_REPO,
-      branch: GITHUB_BRANCH,
-    },
-    pwa: merge(
-      {
-        oneSignalEnabled: false,
-        oneSignalSDK: 'https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js',
-        oneSignalConfig: {
-          appId: '<appId>',
-        },
-        logs: true,
-      },
-      {
-        ...options.pwa,
-        serviceWorker: {
-          source: '/app/serviceworker.js',
-          scope: '/',
-        },
-      },
-    ),
-    build: {
-      hash: BUILD_HASH,
-    },
-  })}',
+  '${JSON.stringify(updatedMetadata)}',
 ) as Metadata;
 `;
 await fs.promises.writeFile(METADATA_PATH, metadataTs, 'utf-8');

@@ -45,8 +45,8 @@ if ('serviceWorker' in navigator) {
 
   /** Helper function to initialize OneSignal */
   // biome-ignore lint/suspicious/noExplicitAny: we needed to use any here
-  const initializeOneSignal = (config: any) => (OneSignal: any) => {
-    OneSignal.init(config)
+  const initializeOneSignal = (oneSignalConfig: any) => (OneSignal: any) => {
+    OneSignal.init(oneSignalConfig)
       .then(() => {
         const logs = [['Version:', OneSignal.VERSION]];
 
