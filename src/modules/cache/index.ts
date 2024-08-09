@@ -87,7 +87,6 @@ export const cache = async <F extends FallbackFunction = FallbackFunction>(
   let response: Response | null | undefined = shouldEdgeCache ? await cacheStorage.match(cacheKey) : undefined;
 
   if (response instanceof Response) {
-    console.log('Cache HIT: ', cacheKey.url);
     if (response.status > 300 && response.status < 400) {
       if (response.body && 'cancel' in Object.getPrototypeOf(response.body)) {
         // Body exists and environment supports readable streams
@@ -118,7 +117,6 @@ export const cache = async <F extends FallbackFunction = FallbackFunction>(
       response = new Response(response.body, responseInit);
     }
   } else {
-    console.log('Cache MISS: ', cacheKey.url);
     const fallbackResponse = await fallback(request, context);
     if (fallbackResponse instanceof Response) {
       response = fallbackResponse;

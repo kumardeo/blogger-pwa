@@ -60,7 +60,7 @@ If you want to use Cloudflare Workers, you can follow the following steps otherw
    * **Service**: Select `blogger-pwa-kv` workers if you want to use Cloudflare KV, `blogger-pwa-github` workers if you want to fetch assets from github repository (Repository must be public).
    * **Environment**: `production`
 
-If you don't want to use Cloudflare Worker, then follow these steps:
+If you don't want to use Cloudflare Workers, then follow these steps:
 
 1. [Fork this repository](https://github.com/kumardeo/blogger-pwa/fork).
 2. Go to forked repository. Go to **Actions** tab.
