@@ -25,14 +25,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-        # Install node
+        # Install Node.js
       - name: Setup Node.js v${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
 
-        # Install npm
+        # Install NPM
       - name: Setup NPM v${{ env.NPM_VERSION }}
         run: npm install -g npm@${{ env.NPM_VERSION }}
 
@@ -40,11 +40,11 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-        # Generate bucket and outout files to proceed further
+        # Generate bucket and output files to proceed further
       - name: Generate Bucket and Output
         run: npm run generate -- --repository=${{ github.repository }} --branch=${{ github.head_ref || github.ref_name }}
 
-        # Deploy to cloudflare workers if default branch and required secrets exists
+        # Deploy to cloudflare workers if default branch and required secrets (CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_API_TOKEN) exist
       - name: Deploy to Cloudflare Workers
         if: ${{ ((github.head_ref || github.ref_name) == github.event.repository.default_branch) && (env.CLOUDFLARE_ACCOUNT_ID != '') && (env.CLOUDFLARE_API_TOKEN != '') }}
         run: |
