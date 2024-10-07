@@ -11,7 +11,7 @@ export class AssetsFetcher {
   #context: ExecutionContext;
 
   constructor(namespace: KVNamespace, manifest: string | Record<string, string>, context: ExecutionContext) {
-    this.#manifest = (typeof manifest === 'string' ? JSON.parse(manifest) : manifest ?? {}) as Record<string, string>;
+    this.#manifest = (typeof manifest === 'string' ? JSON.parse(manifest) : (manifest ?? {})) as Record<string, string>;
     this.#namespace = namespace;
     this.#context = context;
   }
@@ -94,7 +94,7 @@ export class AssetsFetcher {
     const result = this.#getAsset(path);
     if (result) {
       const defaultCacheKey = new Request(`${requestURL.origin}/__cached_assets_fetcher__/${result.key}${requestURL.search}`, request);
-      const cacheKey = typeof options.cacheKey === 'function' ? options.cacheKey(defaultCacheKey) : options.cacheKey ?? defaultCacheKey;
+      const cacheKey = typeof options.cacheKey === 'function' ? options.cacheKey(defaultCacheKey) : (options.cacheKey ?? defaultCacheKey);
       const etag = result.key;
 
       return cache(

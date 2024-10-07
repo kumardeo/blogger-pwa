@@ -82,7 +82,7 @@ export class GithubAssets {
     const path = options.toAsset ? options.toAsset(requestURL, request) : requestURL.pathname;
 
     const defaultCacheKey = new Request(`${requestURL.origin}/__cached_git_assets__${requestURL.pathname}${requestURL.search}`, request);
-    const cacheKey = typeof options.cacheKey === 'function' ? options.cacheKey(defaultCacheKey) : options.cacheKey ?? defaultCacheKey;
+    const cacheKey = typeof options.cacheKey === 'function' ? options.cacheKey(defaultCacheKey) : (options.cacheKey ?? defaultCacheKey);
 
     return cache(
       request,

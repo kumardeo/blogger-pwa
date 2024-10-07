@@ -80,9 +80,9 @@ export const cache = async <F extends FallbackFunction = FallbackFunction>(
 
   const shouldSetBrowserCache = typeof cacheOptions.browserTTL === 'number';
 
-  const cacheStorage: Cache = typeof cacheOptions.cache === 'string' ? await caches.open(cacheOptions.cache) : cacheOptions.cache ?? caches.default;
+  const cacheStorage: Cache = typeof cacheOptions.cache === 'string' ? await caches.open(cacheOptions.cache) : (cacheOptions.cache ?? caches.default);
 
-  const cacheKey = typeof cacheOptions.cacheKey === 'function' ? cacheOptions.cacheKey(request) : cacheOptions.cacheKey ?? request;
+  const cacheKey = typeof cacheOptions.cacheKey === 'function' ? cacheOptions.cacheKey(request) : (cacheOptions.cacheKey ?? request);
 
   let response: Response | null | undefined = shouldEdgeCache ? await cacheStorage.match(cacheKey) : undefined;
 
