@@ -311,7 +311,7 @@ const cdnNoSplashMetatags = getMetaTagsHTML(cdnMetatagsResult.noSplash);
 await fs.promises.writeFile(path.join(OUT_CDN_METATAGS_NO_SPLASH), `${cdnNoSplashMetatags}\n`);
 log(clc.green(`  +  Copied cdn-metatags-no-splash.html at ${OUT_CDN_METATAGS_NO_SPLASH}`));
 
-const indexHTMLMetaTags = `<!--[ START: PWA Meta Tags ]-->${metatagsResult.noSplash.join(
+const indexHTMLMetaTags = `<!--[ START: PWA Meta Tags ]-->\n    ${metatagsResult.noSplash.join(
   '\n    ',
 )}\n    <script async="true" defer="true" src="/app/pwa.js" type="module"></script>\n    <!--[ END: PWA Meta Tags ]-->`;
 const indexHTMLContent = getIndexHTML(options.name, indexHTMLMetaTags);

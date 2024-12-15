@@ -119,7 +119,7 @@ export const cache = async <F extends FallbackFunction = FallbackFunction>(
   } else {
     const fallbackResponse = await fallback(request, context);
     if (fallbackResponse instanceof Response) {
-      response = fallbackResponse;
+      response = new Response(fallbackResponse.body, fallbackResponse);
     } else {
       return null as Awaited<ReturnType<F>> extends Response ? Response : Response | null;
     }
