@@ -3,11 +3,11 @@ import type { Config } from './types';
 export default {
   version: '1.0',
   id: '/',
-  name: 'My Blog',
-  shortName: 'My Blog',
-  description: 'My blog description goes here...',
+  name: 'صِوانˣʸᶻ',
+  shortName: 'SiwaneXYZ',
+  description: 'ثبت صوانˣʸᶻ الان و استمتع بمجمل المواضيع المفيدة و الحصرية',
   direction: 'auto',
-  language: 'en-US',
+  language: 'ar-MA',
   backgroundColor: '#fff',
   themeColor: '#fff',
   display: 'standalone',
@@ -18,16 +18,22 @@ export default {
   preferRelatedApplications: false,
   shortcuts: [
     {
-      name: 'Shortcut 1',
-      shortName: 'Shortcut 1',
-      description: 'Shortcut 1 description goes here...',
-      url: '/search/label/shortcut-1?utm_source=homescreen',
+      name: 'صِوانˣʸᶻ',
+      shortName: 'SiwaneXYZ',
+      description: 'صوانˣʸᶻ مدونة تعليمية تقدم دروس في احتراف بلوجر و اليوتيوب و الربح من الانترنت.',
+      url: '/?utm_source=homescreen',
     },
     {
-      name: 'Shortcut 2',
-      shortName: 'Shortcut 2',
-      description: 'Shortcut 2 description goes here...',
-      url: '/search/label/shortcut-2?utm_source=homescreen',
+      name: 'حول المدونة',
+      shortName: 'حول المدونة',
+      description: 'استكشف مدونة صوان للتقنية',
+      url: '/p/about.html?utm_source=homescreen',
+    },
+    {
+      name: 'سياسة الخصوصية',
+      shortName: 'الخصوصية',
+      description: 'احتراف التدوين و اليوتيوب و تطوير المحتوى و السيو و الربح من الانترنت.',
+      url: '/p/privacy.html?utm_source=homescreen',
     },
   ],
   pwa: {
@@ -35,7 +41,7 @@ export default {
     // OneSignal is not available if you are not using cloudflare workers
     oneSignalEnabled: false,
     oneSignalConfig: {
-      appId: '********-****-****-****-************',
+      appId: 'b0cd2165-a3c0-4ed7-a609-a78675fcbd69',
       allowLocalhostAsSecureOrigin: true,
     },
   },
