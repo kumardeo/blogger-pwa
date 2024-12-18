@@ -1,14 +1,14 @@
 {
-  "name": "My Blog",
+  "name": "صِوانˣʸᶻ",
   "id": "/",
-  "short_name": "My Blog",
-  "description": "My blog description goes here...",
+  "short_name": "SiwaneXYZ",
+  "description": "ثبت صوانˣʸᶻ الان و استمتع بمجمل المواضيع المفيدة و الحصرية",
   "version": "1.0",
   "dir": "auto",
-  "lang": "en-US",
+  "lang": "ar-MA",
   "orientation": "any",
-  "start_url": "https://hello-example.blogspot.com/?utm_source=homescreen",
-  "scope": "https://hello-example.blogspot.com/",
+  "start_url": "https://www.siwane.xyz/?utm_source=homescreen",
+  "scope": "https://www.siwane.xyz/",
   "display": "standalone",
   "prefer_related_applications": false,
   "background_color": "#fff",
@@ -116,10 +116,10 @@
   ],
   "shortcuts": [
     {
-      "name": "Shortcut 1",
-      "short_name": "Shortcut 1",
-      "description": "Shortcut 1 description goes here...",
-      "url": "https://hello-example.blogspot.com/search/label/shortcut-1?utm_source=homescreen",
+      "name": "صِوانˣʸᶻ",
+      "short_name": "SiwaneXYZ",
+      "description": "صوانˣʸᶻ مدونة تعليمية تقدم دروس في احتراف بلوجر و اليوتيوب و الربح من الانترنت.",
+      "url": "https://www.siwane.xyz/?utm_source=homescreen",
       "icons": [
         {
           "src": "icons/android-chrome-96x96.png",
@@ -128,10 +128,22 @@
       ]
     },
     {
-      "name": "Shortcut 2",
-      "short_name": "Shortcut 2",
-      "description": "Shortcut 2 description goes here...",
-      "url": "https://hello-example.blogspot.com/search/label/shortcut-2?utm_source=homescreen",
+      "name": "حول المدونة",
+      "short_name": "حول المدونة",
+      "description": "استكشف مدونة صوان للتقنية",
+      "url": "https://www.siwane.xyz/p/about.html?utm_source=homescreen",
+      "icons": [
+        {
+          "src": "icons/android-chrome-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "سياسة الخصوصية",
+      "short_name": "الخصوصية",
+      "description": "احتراف التدوين و اليوتيوب و تطوير المحتوى و السيو و الربح من الانترنت.",
+      "url": "https://www.siwane.xyz/p/privacy.html?utm_source=homescreen",
       "icons": [
         {
           "src": "icons/android-chrome-96x96.png",
