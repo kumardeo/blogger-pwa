@@ -1,6 +1,11 @@
 import mime from 'mime/lite';
 import { type CacheOptions, cache } from '../cache';
 
+interface ExecutionContext {
+  waitUntil(promise: Promise<unknown>): void;
+  passThroughOnException(): void;
+}
+
 export type Options = CacheOptions & {
   toAsset?: (url: URL, request: Request) => string;
 };

@@ -1,5 +1,10 @@
 declare const caches: CacheStorage & { default: Cache };
 
+interface ExecutionContext {
+  waitUntil(promise: Promise<unknown>): void;
+  passThroughOnException(): void;
+}
+
 export type FallbackFunctionValue = Response | null | undefined;
 
 export type FallbackFunction = (request: Request, context: ExecutionContext) => FallbackFunctionValue | Promise<FallbackFunctionValue>;
