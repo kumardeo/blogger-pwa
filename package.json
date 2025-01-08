@@ -23,12 +23,12 @@
     "check:fix": "biome check --write .",
     "check:types": "tsc --noEmit",
     "generate": "tsx ./scripts/generate.ts",
-    "kv:build": "npm run generate && wrangler deploy --config wrangler.kv.toml --env production --dry-run --outdir=./build/kv",
-    "kv:deploy": "npm run generate && wrangler deploy --config wrangler.kv.toml --env production",
-    "kv:dev": "npm run generate && wrangler dev --config wrangler.kv.toml",
-    "github:build": "npm run generate && wrangler deploy --config wrangler.github.toml --env production --dry-run --outdir=./build/github",
-    "github:deploy": "npm run generate && wrangler deploy --config wrangler.github.toml --env production",
-    "github:dev": "npm run generate && wrangler dev --config wrangler.github.toml",
+    "kv:build": "npm run generate && wrangler deploy --config wrangler.kv.json --env production --dry-run --outdir=./build/kv",
+    "kv:deploy": "npm run generate && wrangler deploy --config wrangler.kv.json --env production",
+    "kv:dev": "npm run generate && wrangler dev --config wrangler.kv.json",
+    "github:build": "npm run generate && wrangler deploy --config wrangler.github.json --env production --dry-run --outdir=./build/github",
+    "github:deploy": "npm run generate && wrangler deploy --config wrangler.github.json --env production",
+    "github:dev": "npm run generate && wrangler dev --config wrangler.github.json",
     "upgrade": "ncu --interactive"
   },
   "dependencies": {

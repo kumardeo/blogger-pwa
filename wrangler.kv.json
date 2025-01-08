@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "blogger-pwa-kv-local",
+  "main": "./src/workers/kv-workers.ts",
+  "compatibility_date": "2024-06-20",
+  "compatibility_flags": ["nodejs_compat"],
+  "upload_source_maps": true,
+  "dev": {
+    "port": 8080
+  },
+  "site": {
+    "bucket": "./bucket"
+  },
+  "vars": {
+    "CF_ENV": "local"
+  },
+  "env": {
+    "production": {
+      "name": "blogger-pwa-kv",
+      "minify": true,
+      "vars": {
+        "CF_ENV": "production"
+      }
+    }
+  }
+}

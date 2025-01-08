@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "blogger-pwa-github-local",
+  "main": "./src/workers/github-workers.ts",
+  "compatibility_date": "2024-06-20",
+  "compatibility_flags": ["nodejs_compat"],
+  "upload_source_maps": true,
+  "dev": {
+    "port": 8080
+  },
+  "vars": {
+    "CF_ENV": "local"
+  },
+  "env": {
+    "production": {
+      "name": "blogger-pwa-github",
+      "minify": true,
+      "vars": {
+        "CF_ENV": "production"
+      }
+    }
+  }
+}
