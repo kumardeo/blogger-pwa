@@ -58,5 +58,8 @@ jobs:
           repository: .
           commit_options: "--allow-empty"
           commit_message: |
-            update: generated bucket and output
+            update: generate bucket and output
             Triggered by ${{ github.sha }}
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "41898282+github-actions[bot]@users.noreply.github.com"
+          commit_author: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"

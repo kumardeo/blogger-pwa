@@ -180,7 +180,7 @@ If you are using Cloudflare Workers, you can integrate OneSignal push notificati
 
 ### Edit Blogger Theme XML
 
-After making all the above changes, workflows will run and it will commit new changes with a message `update: generated bucket and output`, please wait for all the jobs to complete.
+After making all the above changes, workflows will run and it will commit new changes with a message `update: generate bucket and output`, please wait for all the jobs to complete.
 
 Now, it's time to edit your blogger theme XML and add required codes.
 
