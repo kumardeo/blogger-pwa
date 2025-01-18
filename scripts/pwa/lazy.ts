@@ -42,20 +42,20 @@ export const lazy = new Promise<{ type: EventType }>((resolve) => {
     // check if document is already scrolled
     if (document.documentElement.scrollTop !== 0 || (document.body && document.body.scrollTop !== 0)) {
       execute({ type: 'scroll' });
-    }
+    } else {
+      // events to be attached after window is loaded
+      const onLoad = () => {
+        window.removeEventListener('load', onLoad);
+        for (const type of WINDOW_ONLOAD_EVENTS) {
+          window.addEventListener(type, execute);
+        }
+      };
+      window.addEventListener('load', onLoad);
 
-    // events to be attached after window is loaded
-    const onLoad = () => {
-      window.removeEventListener('load', onLoad);
-      for (const type of WINDOW_ONLOAD_EVENTS) {
+      // events to be attached initially
+      for (const type of WINDOW_INITIAL_EVENTS) {
         window.addEventListener(type, execute);
       }
-    };
-    window.addEventListener('load', onLoad);
-
-    // events to be attached initially
-    for (const type of WINDOW_INITIAL_EVENTS) {
-      window.addEventListener(type, execute);
     }
   }
 });
