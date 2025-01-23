@@ -40,6 +40,10 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+        # Lint and Typecheck
+      - name: Lint and Typecheck
+        run: npm run check && npm run check:types
+
         # Generate bucket and output files to proceed further
       - name: Generate Bucket and Output
         run: npm run generate -- --repository=${{ github.repository }} --branch=${{ github.head_ref || github.ref_name }}
