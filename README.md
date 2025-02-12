@@ -89,7 +89,6 @@ You can now configure your PWA by making changes in `pwa.config.ts` file.
 import type { Config } from './types';
 
 export default {
-  version: '1.0',
   id: '/',
   name: 'My Blog',
   shortName: 'My Blog',
@@ -99,7 +98,7 @@ export default {
   backgroundColor: '#fff',
   themeColor: '#fff',
   display: 'standalone',
-  orientation: 'any',
+  orientation: 'natural',
   scope: '/',
   startUrl: '/?utm_source=homescreen',
   appleStatusBarStyle: 'black-translucent',
@@ -136,7 +135,6 @@ export default {
 
 |             key             |                                      type                                      |     default value      | required | description                                                 |
 | :-------------------------: | :----------------------------------------------------------------------------: | :--------------------: | :------: | :---------------------------------------------------------- |
-|          `version`          |                                    `string`                                    |        `'1.0'`         |   yes    | Version of your app                                         |
 |            `id`             |                                    `string`                                    |         `'/'`          |    no    | Id of your app                                              |
 |           `name`            |                                    `string`                                    |       `'My App'`       |   yes    | Name of your app (Blog name)                                |
 |         `shortName`         |                                    `string`                                    | `'My App Short Name'`  |   yes    | Short name of your app                                      |
@@ -146,7 +144,7 @@ export default {
 |      `backgroundColor`      |                                    `string`                                    |        `'#fff'`        |    no    | HEX background color of the app                             |
 |        `themeColor`         |                                    `string`                                    |        `'#fff'`        |    no    | HEX theme color of the app                                  |
 |          `display`          |          `'fullscreen' \| 'standalone' \| 'minimal-ui' \| 'browser'`           |     `'standalone'`     |    no    | Display mode of the app                                     |
-|        `orientation`        |               `'any' \| 'natural' \| 'portrait' \| 'landscape'`                |        `'any'`         |    no    | Orientation of the app                                      |
+|        `orientation`        |               `'any' \| 'natural' \| 'portrait' \| 'landscape'`                |        `'natural'`         |    no    | Orientation of the app                                      |
 |           `scope`           |                                    `string`                                    |         `'/'`          |    no    | Scope of the app                                            |
 |         `startUrl`          |                                    `string`                                    |         `'/'`          |    no    | Url to open when app is launched                            |
 |    `appleStatusBarStyle`    |                 `'black-translucent' \| 'default' \| 'black'`                  | `'black-translucent'`  |    no    | Content of `apple-mobile-web-app-status-bar-style` meta tag |

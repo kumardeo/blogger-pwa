@@ -2,13 +2,12 @@ import path from 'node:path';
 
 export const getManifest = ({
   name = 'My App',
-  version = '1.0',
   id = '/',
   shortName = name as string | undefined,
   description = name as string | undefined,
   direction = 'auto',
   language = 'en-US',
-  orientation = 'any',
+  orientation = 'natural',
   base = undefined as string | undefined,
   startUrl = '/?utm_source=homescreen',
   scope = '/',
@@ -40,7 +39,6 @@ export const getManifest = ({
   id,
   short_name: shortName,
   description,
-  version,
   dir: direction,
   lang: language,
   orientation,

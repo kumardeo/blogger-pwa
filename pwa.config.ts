@@ -1,7 +1,6 @@
 import type { Config } from './types';
 
 export default {
-  version: '1.0',
   id: '/',
   name: 'My Blog',
   shortName: 'My Blog',
@@ -11,7 +10,7 @@ export default {
   backgroundColor: '#fff',
   themeColor: '#fff',
   display: 'standalone',
-  orientation: 'any',
+  orientation: 'natural',
   scope: '/',
   startUrl: '/?utm_source=homescreen',
   appleStatusBarStyle: 'black-translucent',

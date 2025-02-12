@@ -28,7 +28,6 @@ const GITHUB_REPO = args['--repository'] ?? metadata.github?.repository ?? 'kuma
 const GITHUB_BRANCH = args['--branch'] ?? metadata.github?.branch ?? 'main';
 
 const DEFAULT_CONFIG = {
-  version: '1.0',
   name: 'My App',
   shortName: 'My App Short Name',
   description: 'My App description',
@@ -37,7 +36,7 @@ const DEFAULT_CONFIG = {
   backgroundColor: '#fff',
   themeColor: '#fff',
   display: 'standalone',
-  orientation: 'any',
+  orientation: 'natural',
   scope: '/',
   startUrl: '/',
   preferRelatedApplications: false,
@@ -206,7 +205,6 @@ const commonManifestOptions: Parameters<typeof getManifest>[0] = {
   name: options.name,
   shortName: options.shortName,
   description: options.description,
-  version: options.version,
   direction: options.direction,
   language: options.language,
   display: options.display,
@@ -244,7 +242,7 @@ log(clc.blue('\nGenerating (yandex-browser-manifest.json)...'));
 const yandexManifest = getYandexManifest({
   iconsPath: '/app/icons',
   apiVersion: 1,
-  version: options.version,
+  version: '1.0',
   color: options.backgroundColor,
 });
 await fs.promises.writeFile(path.join(APP_YANDEX), JSON.stringify(yandexManifest, null, 2));
