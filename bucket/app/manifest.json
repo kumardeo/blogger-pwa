@@ -1,10 +1,10 @@
 {
-  "name": "مجلة شمول الالكتروني",
+  "name": "مجلة شمول",
   "id": "/",
-  "short_name": "مجلة شمول",
+  "short_name": "شمول",
   "description": "مجلة شمول الالكترونية تقدم محتوى متنوع من مواضيع رائجة في ساحة الويب",
   "dir": "auto",
-  "lang": "ar-AR",
+  "lang": "en-US",
   "orientation": "natural",
   "start_url": "/?utm_source=homescreen",
   "scope": "/",
@@ -115,11 +115,10 @@
   ],
   "shortcuts": [
     {
-      {
-      "name": "مجلة شمول الالكتروني",
+      "name": "مجلة شمول الالكترونية",
       "short_name": "شمول",
       "description": "مجلة شمول الالكترونية تقدم محتوى متنوع من مواضيع رائجة في ساحة الويب",
-      "url": "/?utm_source=homescreen",
+      "url": "?utm_source=homescreen",
       "icons": [
         {
           "src": "icons/android-chrome-96x96.png",
