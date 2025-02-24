@@ -2,11 +2,11 @@ import type { Config } from './types';
 
 export default {
   id: '/',
-  name: 'My Blog',
-  shortName: 'My Blog',
-  description: 'My blog description goes here...',
+  name: 'مجلة شمول',
+  shortName: 'شمول',
+  description: 'مجلة شمول الالكترونية تقدم محتوى متنوع من مواضيع رائجة في ساحة الويب',
   direction: 'auto',
-  language: 'en-US',
+  language: 'ar-MA',
   backgroundColor: '#fff',
   themeColor: '#fff',
   display: 'standalone',
@@ -17,16 +17,22 @@ export default {
   preferRelatedApplications: false,
   shortcuts: [
     {
-      name: 'Shortcut 1',
-      shortName: 'Shortcut 1',
-      description: 'Shortcut 1 description goes here...',
-      url: '/search/label/shortcut-1?utm_source=homescreen',
+      name: 'مجلة شمول الالكترونية',
+      shortName: 'شمول',
+      description: 'مجلة شمول الالكترونية تقدم محتوى متنوع من مواضيع رائجة في ساحة الويب',
+      url: '?utm_source=homescreen',
     },
     {
-      name: 'Shortcut 2',
-      shortName: 'Shortcut 2',
-      description: 'Shortcut 2 description goes here...',
-      url: '/search/label/shortcut-2?utm_source=homescreen',
+      name: 'حول المجلة',
+      shortName: 'من نحن',
+      description: 'مجلة شمول الالكترونية تقدم محتوى متنوع من مواضيع رائجة في ساحة الويب',
+      url: '/p/about.html?utm_source=homescreen',
+    },
+    {
+      name: 'سياسة الخصوصية',
+      shortName: 'الخصوصية',
+      description: 'مجلة شمول الالكترونية تقدم محتوى متنوع من مواضيع رائجة في ساحة الويب',
+      url: '/p/privacy.html?utm_source=homescreen',
     },
   ],
   pwa: {
@@ -39,5 +45,5 @@ export default {
     },
   },
   // Please replace with your blog url if you are using CDN (JsDelivr)
-  origin: 'https://hello-example.blogspot.com',
+  origin: 'https://shomole.blogspot.com',
 } satisfies Config;
