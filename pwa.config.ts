@@ -6,7 +6,7 @@ export default {
   shortName: 'شمول',
   description: 'مجلة شمول الالكترونية تقدم محتوى متنوع من مواضيع رائجة في ساحة الويب',
   direction: 'auto',
-  language: 'ar-MA',
+  language: 'ar-AR',
   backgroundColor: '#fff',
   themeColor: '#fff',
   display: 'standalone',
