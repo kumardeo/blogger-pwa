@@ -1,13 +1,13 @@
 {
-  "name": "My Blog",
+  "name": "مجلة شمول الالكتروني",
   "id": "/",
-  "short_name": "My Blog",
-  "description": "My blog description goes here...",
+  "short_name": "مجلة شمول",
+  "description": "مجلة شمول الالكترونية تقدم محتوى متنوع من مواضيع رائجة في ساحة الويب",
   "dir": "auto",
-  "lang": "en-US",
+  "lang": "ar-AR",
   "orientation": "natural",
-  "start_url": "https://hello-example.blogspot.com/?utm_source=homescreen",
-  "scope": "https://hello-example.blogspot.com/",
+  "start_url": "https://shomole.blogspot.com/?utm_source=homescreen",
+  "scope": "https://shomole.blogspot.com/",
   "display": "standalone",
   "prefer_related_applications": false,
   "background_color": "#fff",
@@ -115,10 +115,10 @@
   ],
   "shortcuts": [
     {
-      "name": "Shortcut 1",
-      "short_name": "Shortcut 1",
-      "description": "Shortcut 1 description goes here...",
-      "url": "https://hello-example.blogspot.com/search/label/shortcut-1?utm_source=homescreen",
+      "name": "مجلة شمول الالكتروني",
+      "short_name": "شمول",
+      "description": "مجلة شمول الالكترونية تقدم محتوى متنوع من مواضيع رائجة في ساحة الويب",
+      "url": "https://shomole.blogspot.com/?utm_source=homescreen",
       "icons": [
         {
           "src": "icons/android-chrome-96x96.png",
@@ -127,10 +127,22 @@
       ]
     },
     {
-      "name": "Shortcut 2",
-      "short_name": "Shortcut 2",
-      "description": "Shortcut 2 description goes here...",
-      "url": "https://hello-example.blogspot.com/search/label/shortcut-2?utm_source=homescreen",
+      "name": "حول المجلة",
+      "short_name": "من نحن",
+      "description": "مجلة شمول الالكترونية تقدم محتوى متنوع من مواضيع رائجة في ساحة الويب",
+      "url": "https://shomole.blogspot.com/p/about.html?utm_source=homescreen",
+      "icons": [
+        {
+          "src": "icons/android-chrome-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "سياسة الخصوصية",
+      "short_name": "الخصوصية",
+      "description": "مجلة شمول الالكترونية تقدم محتوى متنوع من مواضيع رائجة في ساحة الويب",
+      "url": "https://shomole.blogspot.com//p/privacy.html?utm_source=homescreen",
       "icons": [
         {
           "src": "icons/android-chrome-96x96.png",
