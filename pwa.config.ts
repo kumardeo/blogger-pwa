@@ -26,7 +26,7 @@ export default {
       name: 'حول المجلة',
       shortName: 'من نحن',
       description: 'مجلة شمول الالكترونية تقدم محتوى متنوع من مواضيع رائجة في ساحة الويب',
-      url: '/p/about.html?utm_source=homescreen',
+      url: '/p/about-us.html?utm_source=homescreen',
     },
     {
       name: 'سياسة الخصوصية',
