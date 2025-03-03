@@ -45,5 +45,5 @@ export default {
     },
   },
   // Please replace with your blog url if you are using CDN (JsDelivr)
-  origin: 'https://shomole.com',
+  origin: 'https://www.shomole.com',
 } satisfies Config;
