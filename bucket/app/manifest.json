@@ -77,6 +77,24 @@
   ],
   "screenshots": [
     {
+      "src": "screenshots/screen-narrow-1.png",
+      "type": "image/png",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "screenshots/screen-narrow-2.png",
+      "type": "image/png",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "screenshots/screen-narrow-3.png",
+      "type": "image/png",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    },
+    {
       "src": "screenshots/screen-wide-1.png",
       "type": "image/png",
       "sizes": "720x540",
