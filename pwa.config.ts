@@ -2,9 +2,9 @@ import type { Config } from './types';
 
 export default {
   id: '/',
-  name: 'My Blog',
-  shortName: 'My Blog',
-  description: 'My blog description goes here...',
+  name: 'SI99.pro',
+  shortName: 'SI99',
+  description: 'From basics to pro – master technology with tutorials, coding resources, and guides. Stay updated with the latest tech trends.',
   direction: 'auto',
   language: 'en-US',
   backgroundColor: '#fff',
