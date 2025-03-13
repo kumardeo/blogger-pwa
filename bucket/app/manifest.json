@@ -1,8 +1,8 @@
 {
-  "name": "My Blog",
+  "name": "SI99.pro",
   "id": "/",
-  "short_name": "My Blog",
-  "description": "My blog description goes here...",
+  "short_name": "SI99",
+  "description": "From basics to pro – master technology with tutorials, coding resources, and guides. Stay updated with the latest tech trends.",
   "dir": "auto",
   "lang": "en-US",
   "orientation": "natural",
