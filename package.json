@@ -23,29 +23,26 @@
     "check:fix": "biome check --write .",
     "check:types": "tsc --noEmit",
     "generate": "tsx ./scripts/generate.ts",
-    "kv:build": "npm run generate && wrangler deploy --config wrangler.kv.json --env production --dry-run --outdir=./build/kv",
-    "kv:deploy": "npm run generate && wrangler deploy --config wrangler.kv.json --env production",
-    "kv:dev": "npm run generate && wrangler dev --config wrangler.kv.json",
-    "github:build": "npm run generate && wrangler deploy --config wrangler.github.json --env production --dry-run --outdir=./build/github",
-    "github:deploy": "npm run generate && wrangler deploy --config wrangler.github.json --env production",
-    "github:dev": "npm run generate && wrangler dev --config wrangler.github.json",
+    "cf:build": "npm run generate && wrangler deploy --env production --dry-run --outdir=.workers-build",
+    "cf:deploy": "npm run generate && wrangler deploy --env production",
+    "cf:dev": "npm run generate && wrangler dev",
+    "cf:types": "wrangler types workers/workers-types.d.ts",
     "upgrade": "ncu --interactive"
   },
   "dependencies": {
     "deepmerge": "^4.3.1",
-    "hono": "^4.7.4",
-    "mime": "^4.0.6"
+    "hono": "^4.7.5",
+    "mime": "^4.0.7"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@cloudflare/workers-types": "^4.20250313.0",
-    "@types/node": "^22.13.10",
+    "@types/node": "^22.14.0",
     "arg": "^5.0.2",
     "console-log-colors": "^0.5.0",
-    "esbuild": "^0.25.1",
+    "esbuild": "^0.25.2",
     "favicons": "^7.2.0",
-    "nanoid": "^5.1.4",
-    "npm-check-updates": "^17.1.15",
+    "nanoid": "^5.1.5",
+    "npm-check-updates": "^17.1.16",
     "tsup": "^8.4.0",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2",
@@ -54,7 +51,7 @@
     "workbox-precaching": "^7.3.0",
     "workbox-routing": "^7.3.0",
     "workbox-strategies": "^7.3.0",
-    "wrangler": "^4.0.0",
+    "wrangler": "^4.7.0",
     "xml-js": "^1.6.11"
   }
 }

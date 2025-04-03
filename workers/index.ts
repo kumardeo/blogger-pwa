@@ -1,10 +1,10 @@
 import assetsManifest from '__STATIC_CONTENT_MANIFEST';
 import { Hono } from 'hono';
-import { metadata } from '../../metadata';
-import { AssetsFetcher } from '../modules/assets-fetcher';
+import { metadata } from '../metadata';
+import { AssetsFetcher } from './utils/assets-fetcher';
 
 type HonoContext = {
-  Bindings: CloudflareEnv;
+  Bindings: Env & { __STATIC_CONTENT: KVNamespace };
   Variables: {
     assets: AssetsFetcher;
   };
@@ -67,4 +67,4 @@ const app = new Hono<HonoContext>()
 
 export default {
   fetch: app.fetch,
-} satisfies ExportedHandler<CloudflareEnv>;
+} satisfies ExportedHandler<Env>;

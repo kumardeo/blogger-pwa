@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
-    "ignore": ["node_modules", "build", "public", "bucket", "output", ".wrangler"]
+    "ignore": ["node_modules", "build", ".workers-build", "public", "bucket", "output", ".wrangler"]
   },
   "organizeImports": {
     "enabled": true
@@ -37,6 +37,15 @@
     {
       "include": ["package.json"],
       "formatter": {
+        "enabled": false
+      }
+    },
+    {
+      "include": ["workers/workers-types.d.ts"],
+      "formatter": {
+        "enabled": false
+      },
+      "linter": {
         "enabled": false
       }
     }
