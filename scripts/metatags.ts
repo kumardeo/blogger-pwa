@@ -239,11 +239,7 @@ export const getMetaTags = ({
   const getIconHref = (filename: string) => getHref(path.posix.join(iconsPath, filename), base);
   const generate = (splashScreens = true) =>
     [
-      getLinkElement({
-        rel: 'icon',
-        type: 'image/x-icon',
-        href: getIconHref('favicon.ico'),
-      }),
+      ...getAppleIconMetaTags({ iconsPath, base }),
       getLinkElement({
         rel: 'icon',
         type: 'image/png',
@@ -263,6 +259,16 @@ export const getMetaTags = ({
         href: getIconHref('favicon-48x48.png'),
       }),
       getLinkElement({
+        rel: 'shortcut icon',
+        type: 'image/x-icon',
+        href: getIconHref('favicon.ico'),
+      }),
+      getLinkElement({
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: getIconHref('favicon.ico'),
+      }),
+      getLinkElement({
         rel: 'manifest',
         href: getHref(path.posix.join(manifestPath), base),
       }),
@@ -278,7 +284,6 @@ export const getMetaTags = ({
         name: 'application-name',
         content: applicationName,
       }),
-      ...getAppleIconMetaTags({ iconsPath, base }),
       getMetaElement({
         name: 'apple-mobile-web-app-capable',
         content: 'yes',

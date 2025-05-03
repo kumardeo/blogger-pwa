@@ -1,23 +1,10 @@
 import { cacheNames, clientsClaim, setCacheNameDetails } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
-import { precacheAndRoute } from 'workbox-precaching';
+import { cleanupOutdatedCaches, matchPrecache, precacheAndRoute } from 'workbox-precaching';
 import { registerRoute, setCatchHandler, setDefaultHandler } from 'workbox-routing';
 import { CacheFirst, NetworkOnly } from 'workbox-strategies';
 
 declare const self: ServiceWorkerGlobalScope;
-
-/** Configurations for serviceworker */
-const config = {
-  app: {
-    name: 'blogger-pwa',
-    version: 'v1',
-    precache: 'install-time',
-    runtime: 'run-time',
-  },
-  fallback: '/app/fallback/',
-  manifest: '/app/manifest.webmanifest',
-  favicon: '/app/icons/favicon.ico',
-};
 
 self.skipWaiting();
 clientsClaim();
@@ -29,17 +16,15 @@ self.addEventListener('message', (event) => {
 });
 
 setCacheNameDetails({
-  prefix: config.app.name,
-  suffix: config.app.version,
-  precache: config.app.precache,
-  runtime: config.app.runtime,
+  prefix: 'blogger-pwa',
+  suffix: 'v1',
+  precache: 'install-time',
+  runtime: 'run-time',
 });
 
-precacheAndRoute([
-  { url: config.fallback, revision: null },
-  { url: config.manifest, revision: null },
-  { url: config.favicon, revision: null },
-]);
+cleanupOutdatedCaches();
+
+precacheAndRoute(self.__WB_MANIFEST);
 
 setDefaultHandler(new NetworkOnly());
 
@@ -63,19 +48,10 @@ registerRoute(
 setCatchHandler(async ({ request }) => {
   switch (request.destination) {
     case 'document': {
-      return caches.match(config.fallback) as Promise<Response>;
+      return matchPrecache('/app/offline') as Promise<Response>;
     }
     default: {
       return Response.error();
     }
   }
-});
-
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches
-      .keys()
-      .then((keys) => keys.filter((key) => !key.endsWith(version)))
-      .then((keys) => Promise.all(keys.map((key) => caches.delete(key)))),
-  );
 });

@@ -2,15 +2,41 @@
 <html>
 
 <head>
-  <!--[ Meta Tags ]-->
-  <title>No internet connection</title>
   <meta charset="UTF-8" />
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport" />
   <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+  <title>No internet connection</title>
 
-  <!--[ Favicon ]-->
-  <link href="/app/icons/favicon.ico" rel="icon" type="image/x-icon" />
-  <link href="/app/icons/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <!--[ START: PWA Meta Tags ]-->
+  <link rel="apple-touch-icon" sizes="57x57" href="/app/icons/apple-touch-icon-57x57.png"/>
+  <link rel="apple-touch-icon" sizes="60x60" href="/app/icons/apple-touch-icon-60x60.png"/>
+  <link rel="apple-touch-icon" sizes="72x72" href="/app/icons/apple-touch-icon-72x72.png"/>
+  <link rel="apple-touch-icon" sizes="76x76" href="/app/icons/apple-touch-icon-76x76.png"/>
+  <link rel="apple-touch-icon" sizes="114x114" href="/app/icons/apple-touch-icon-114x114.png"/>
+  <link rel="apple-touch-icon" sizes="120x120" href="/app/icons/apple-touch-icon-120x120.png"/>
+  <link rel="apple-touch-icon" sizes="144x144" href="/app/icons/apple-touch-icon-144x144.png"/>
+  <link rel="apple-touch-icon" sizes="152x152" href="/app/icons/apple-touch-icon-152x152.png"/>
+  <link rel="apple-touch-icon" sizes="167x167" href="/app/icons/apple-touch-icon-167x167.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/app/icons/apple-touch-icon-180x180.png"/>
+  <link rel="apple-touch-icon" sizes="1024x1024" href="/app/icons/apple-touch-icon-1024x1024.png"/>
+  <link rel="icon" sizes="16x16" type="image/png" href="/app/icons/favicon-16x16.png"/>
+  <link rel="icon" sizes="32x32" type="image/png" href="/app/icons/favicon-32x32.png"/>
+  <link rel="icon" sizes="48x48" type="image/png" href="/app/icons/favicon-48x48.png"/>
+  <link rel="shortcut icon" type="image/x-icon" href="/app/icons/favicon.ico"/>
+  <link rel="icon" type="image/x-icon" href="/app/icons/favicon.ico"/>
+  <link rel="manifest" href="/app/manifest.webmanifest"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="theme-color" content="#fff"/>
+  <meta name="application-name" content="My Blog"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="My Blog"/>
+  <meta name="msapplication-TileColor" content="#fff"/>
+  <meta name="msapplication-TileImage" content="/app/icons/mstile-144x144.png"/>
+  <meta name="msapplication-config" content="/app/browserconfig.xml"/>
+  <link rel="yandex-tableau-widget" href="/app/yandex-browser-manifest.json"/>
+  <script async="" defer="" src="/app/pwa.js" type="module"></script>
+  <!--[ END: PWA Meta Tags ]-->
 
   <!--[ Styles ]-->
   <style>
@@ -59,16 +85,16 @@
       border: 1px solid #ebebeb;
     }
 
-    .noIntIcon {
+    .no-internet-icon {
       padding: 30px;
     }
 
-    .noConHead {
+    .no-internet-header {
       font-weight: 600;
       font-size: 1.3rem;
     }
 
-    .noConDesc {
+    .no-internet-description {
       font-size: 16px;
       line-height: 1.4em;
       padding-top: 20px;
@@ -76,13 +102,10 @@
       opacity: 0.8;
     }
 
-    .relCont {
+    .reload-container {
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-
-    .relCont {
       padding: 30px;
     }
 
@@ -142,12 +165,12 @@
 <body>
   <div class="main-wrapper notranslate">
     <div class="container">
-      <div class="noIntIcon">
+      <div class="no-internet-icon">
         <i class="icon-lg wifi-off"></i>
       </div>
-      <div class="noConHead">Something went wrong!</div>
+      <div class="no-internet-header">Something went wrong!</div>
 
-      <div class="relCont">
+      <div class="reload-container">
         <button class="reload-button">
           <i class="icon reload"></i>
         </button>

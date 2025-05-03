@@ -212,7 +212,7 @@ Follow these steps only if you are using an AMP template and Cloudflare Workers 
 2. Paste the following codes above to `</body>`:
 
    ```html
-   <amp-install-serviceworker data-iframe-src='/app/fallback/' layout='nodisplay' src='/app/serviceworker.js'/>
+   <amp-install-serviceworker data-iframe-src='/app/offline' layout='nodisplay' src='/app/serviceworker.js'/>
    ```
 
 #### Non-AMP Template

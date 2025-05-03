@@ -5,14 +5,15 @@ import clc from 'console-log-colors';
 import merge from 'deepmerge';
 import { build } from 'esbuild';
 import { favicons } from 'favicons';
-import { nanoid } from 'nanoid';
-import { type Metadata, metadata } from '../metadata';
+import { injectManifest } from 'workbox-build';
+import metadata from '../metadata.json';
 import USER_CONFIG from '../pwa.config';
 import type { Config } from '../types';
 import { getBrowserConfig } from './browserconfig';
 import { getIndexHTML } from './html';
 import { getManifest } from './manifest';
 import { getMetaTags } from './metatags';
+import { getOfflineHTML } from './offline';
 import { createDirectory, existsPath, getDirectoryFiles } from './utils';
 import { getYandexManifest } from './yandex';
 
@@ -54,7 +55,7 @@ const UPLOAD_SCREENS_DIR = `${UPLOAD_DIR}/screenshots`;
 const UPLOAD_SCREENS_NARROW = `${UPLOAD_SCREENS_DIR}/narrow`;
 const UPLOAD_SCREENS_WIDE = `${UPLOAD_SCREENS_DIR}/wide`;
 const BUCKET_DIR = './bucket';
-const METADATA_PATH = './metadata.ts';
+const METADATA_PATH = './metadata.json';
 const APP_DIR = `${BUCKET_DIR}/app`;
 const APP_ICONS_DIR = `${APP_DIR}/icons`;
 const APP_SCREENS_DIR = `${APP_DIR}/screenshots`;
@@ -69,77 +70,22 @@ const OUT_METATAGS = `${OUT_DIR}/pwa-metatags.html`;
 const OUT_CDN_METATAGS = `${OUT_DIR}/cdn-metatags.html`;
 const OUT_METATAGS_NO_SPLASH = `${OUT_DIR}/pwa-metatags-no-splash.html`;
 const OUT_CDN_METATAGS_NO_SPLASH = `${OUT_DIR}/cdn-metatags-no-splash.html`;
-const BUILD_HASH = nanoid();
+const INDEX_HTML = `${BUCKET_DIR}/index.html`;
+const OFFLINE_HTML = `${APP_DIR}/offline/index.html`;
 
 log('✨ Blogger PWA Builder by Fineshop Design');
 log(clc.redBright('-----------------------------------------\n'));
 
 /* Write metadata ts */
 log(clc.blue('Generating (metadata)...'));
-const updatedMetadata: Metadata = {
+const updatedMetadata: typeof metadata = {
   github: {
     repository: GITHUB_REPO,
     branch: GITHUB_BRANCH,
   },
-  pwa: merge(
-    {
-      oneSignalEnabled: false,
-      oneSignalSDK: 'https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js',
-      oneSignalConfig: {
-        appId: '<appId>',
-        allowLocalhostAsSecureOrigin: true,
-      },
-      logs: true,
-    },
-    {
-      ...options.pwa,
-      oneSignalConfig: {
-        ...options.pwa?.oneSignalConfig,
-      },
-      serviceWorker: {
-        source: '/app/serviceworker.js',
-        scope: '/',
-      },
-    },
-  ),
-  build: {
-    hash: BUILD_HASH,
-  },
 };
-const metadataTs = `/**
- * This is auto generated metadata file, generated at: ${new Date().toString()}
- * Prevent making any changes here
- */
-
-export interface Metadata {
-  github: {
-    repository: string;
-    branch: string;
-  };
-  pwa: {
-    logs: boolean;
-    oneSignalEnabled: boolean;
-    oneSignalSDK: string;
-    oneSignalConfig: {
-      appId: string;
-      allowLocalhostAsSecureOrigin: boolean;
-    };
-    serviceWorker: {
-      source: string;
-      scope: string;
-    };
-  };
-  build: {
-    hash: string;
-  };
-}
-
-export const metadata = JSON.parse(
-  '${JSON.stringify(updatedMetadata)}',
-) as Metadata;
-`;
-await fs.promises.writeFile(METADATA_PATH, metadataTs, 'utf-8');
-log(clc.green(`  +  Copied metadata.ts at ${METADATA_PATH}`));
+await fs.promises.writeFile(METADATA_PATH, `${JSON.stringify(updatedMetadata, null, 2)}\n`, 'utf-8');
+log(clc.green(`  +  Copied metadata.json at ${METADATA_PATH}`));
 
 /* Write favicons */
 log(clc.blue('\nGenerating (favicons)...'));
@@ -279,10 +225,7 @@ const cdnMetatagsResult = getMetaTags({
   manifestPath: './app/manifest.cdn.webmanifest',
   base: `https://cdn.jsdelivr.net/gh/${GITHUB_REPO}@${GITHUB_BRANCH}/bucket/`,
 });
-const getMetaTagsHTML = (metatags: string[]) => {
-  const htmlMetaTags = `<!--[ START: PWA Meta Tags ]-->\n${metatags.join('\n')}\n<!--[ END: PWA Meta Tags ]-->`;
-  return htmlMetaTags;
-};
+const getMetaTagsHTML = (metatags: string[]) => `<!--[ START: PWA Meta Tags ]-->\n${metatags.join('\n')}\n<!--[ END: PWA Meta Tags ]-->`;
 await createDirectory(OUT_DIR);
 
 for (const meta of metatagsResult.all) {
@@ -309,11 +252,13 @@ const cdnNoSplashMetatags = getMetaTagsHTML(cdnMetatagsResult.noSplash);
 await fs.promises.writeFile(path.join(OUT_CDN_METATAGS_NO_SPLASH), `${cdnNoSplashMetatags}\n`);
 log(clc.green(`  +  Copied cdn-metatags-no-splash.html at ${OUT_CDN_METATAGS_NO_SPLASH}`));
 
-const indexHTMLMetaTags = `<!--[ START: PWA Meta Tags ]-->\n    ${metatagsResult.noSplash.join(
-  '\n    ',
-)}\n    <script async="true" defer="true" src="/app/pwa.js" type="module"></script>\n    <!--[ END: PWA Meta Tags ]-->`;
-const indexHTMLContent = getIndexHTML(options.name, indexHTMLMetaTags);
-await fs.promises.writeFile(path.join(`${BUCKET_DIR}/index.html`), `${indexHTMLContent}\n`);
+const htmlHeadMetaTags = `<!--[ START: PWA Meta Tags ]-->\n  ${metatagsResult.noSplash.join(
+  '\n  ',
+)}\n  <script async="" defer="" src="/app/pwa.js" type="module"></script>\n  <!--[ END: PWA Meta Tags ]-->`;
+const indexHTMLContent = getIndexHTML(options.name, htmlHeadMetaTags);
+await fs.promises.writeFile(path.join(INDEX_HTML), `${indexHTMLContent}\n`);
+const offlineHTMLContent = getOfflineHTML(undefined, htmlHeadMetaTags);
+await fs.promises.writeFile(path.join(OFFLINE_HTML), `${offlineHTMLContent}\n`);
 
 /* Write pwa js */
 log(clc.blue('\nGenerating (pwa.js)...'));
@@ -324,6 +269,33 @@ await build({
   bundle: true,
   minify: true,
   outfile: APP_PWA_JS,
+  define: {
+    __PWA_CONFIG_JSON: JSON.stringify(
+      JSON.stringify(
+        merge(
+          {
+            oneSignalEnabled: false,
+            oneSignalSDK: 'https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js',
+            oneSignalConfig: {
+              appId: '<appId>',
+              allowLocalhostAsSecureOrigin: true,
+            },
+            logs: true,
+          },
+          {
+            ...options.pwa,
+            oneSignalConfig: {
+              ...options.pwa?.oneSignalConfig,
+            },
+            serviceWorker: {
+              source: '/app/serviceworker.js',
+              scope: '/',
+            },
+          },
+        ),
+      ),
+    ),
+  },
 });
 log(clc.green(`  +  Copied pwa.js at ${APP_PWA_JS}`));
 
@@ -336,6 +308,17 @@ await build({
   bundle: true,
   minify: true,
   outfile: APP_SERVICEWORKER_JS,
+});
+log(clc.green('  +  Injecting precache manifest'));
+await injectManifest({
+  globDirectory: BUCKET_DIR,
+  swSrc: APP_SERVICEWORKER_JS,
+  swDest: APP_SERVICEWORKER_JS,
+  modifyURLPrefix: {
+    '': '/',
+  },
+  globPatterns: ['**/*.{html,css,js,svg,png,jpg,jpeg,gif,webp,woff,woff2,ttf,eot,ico}', '**/manifest.webmanifest'],
+  globIgnores: ['index.html', 'app/onesignalworker.js'],
 });
 log(clc.green(`  +  Copied serviceworker.js at ${APP_SERVICEWORKER_JS}`));
 

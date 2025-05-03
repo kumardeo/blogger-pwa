@@ -1,5 +1,4 @@
 import { Workbox } from 'workbox-window';
-import { metadata } from '../../metadata';
 import { lazy } from './lazy';
 
 declare global {
@@ -9,8 +8,21 @@ declare global {
 }
 
 declare const OneSignal: unknown;
+declare const __PWA_CONFIG_JSON: string;
 
-const config = metadata.pwa;
+const config = JSON.parse(__PWA_CONFIG_JSON) as {
+  logs: boolean;
+  oneSignalEnabled: boolean;
+  oneSignalSDK: string;
+  oneSignalConfig: {
+    appId: string;
+    allowLocalhostAsSecureOrigin: boolean;
+  };
+  serviceWorker: {
+    source: string;
+    scope: string;
+  };
+};
 
 export const groupLog = (title: string | string[], logs: (unknown | unknown[])[]) => {
   if (config.logs) {
