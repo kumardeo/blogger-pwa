@@ -197,7 +197,8 @@ Add the codes specified in next steps.
      `output/cdn-metatags.html` or  
      `output/cdn-metatags-no-splash.html`
 2. Copy all the contents of above file based on your selection and paste it below `<head>`, if you didn't find it, it would have been probably parsed which is `&lt;head&gt;`.
-3. Delete existing similar codes.
+3. These meta tags may contain outdated information, therefore make sure to correct them. 
+4. Delete existing similar codes.
 
 #### AMP Template
 
