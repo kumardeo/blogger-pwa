@@ -226,8 +226,8 @@ const getSplashScreenMetaTags = ({ screensPath = '/', base = undefined as string
 
 export const getMetaTags = ({
   base = undefined as string | undefined,
-  iconsPath = '/app/icons',
-  manifestPath = '/manifest.json',
+  iconsPath = '/icons',
+  manifestPath = '/manifest.webmanifest',
   yandexManifestPath = undefined as string | undefined,
   browserConfigPath = undefined as string | undefined,
   themeColor = '#fff',

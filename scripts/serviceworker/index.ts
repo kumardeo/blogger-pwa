@@ -1,4 +1,4 @@
-import { cacheNames, clientsClaim, setCacheNameDetails, skipWaiting } from 'workbox-core';
+import { cacheNames, clientsClaim, setCacheNameDetails } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute } from 'workbox-precaching';
 import { registerRoute, setCatchHandler, setDefaultHandler } from 'workbox-routing';
@@ -15,12 +15,19 @@ const config = {
     runtime: 'run-time',
   },
   fallback: '/app/fallback/',
-  manifest: '/app/manifest.json',
+  manifest: '/app/manifest.webmanifest',
   favicon: '/app/icons/favicon.ico',
 };
 
-skipWaiting();
+self.skipWaiting();
 clientsClaim();
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
+
 setCacheNameDetails({
   prefix: config.app.name,
   suffix: config.app.version,

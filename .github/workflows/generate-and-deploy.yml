@@ -52,7 +52,7 @@ jobs:
       - name: Deploy to Cloudflare Workers
         if: ${{ ((github.head_ref || github.ref_name) == github.event.repository.default_branch) && (env.CLOUDFLARE_ACCOUNT_ID != '') && (env.CLOUDFLARE_API_TOKEN != '') }}
         run: |
-          npm run cf:deploy
+          npm run deploy
 
         # Commit all changed files back to the repository
       - name: Push Generated Bucket and Output

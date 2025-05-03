@@ -3,7 +3,7 @@
 
 <head>
   <!--[ Meta Tags ]-->
-  <title>Something went wrong!</title>
+  <title>No internet connection</title>
   <meta charset="UTF-8" />
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport" />
   <meta content="IE=edge" http-equiv="X-UA-Compatible" />
@@ -158,12 +158,8 @@
   <!--[ Script ]-->
   <script>
     document.querySelector(".reload-button")
-      .addEventListener("click", () => {
-        window.location.reload();
-      });
-    window.addEventListener("online", () => {
-      window.location.reload();
-    });
+      .addEventListener("click", () => window.location.reload());
+    window.addEventListener("online", () => window.location.reload(), { once: true });
   </script>
 </body>
 

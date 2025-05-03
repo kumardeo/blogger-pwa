@@ -58,8 +58,8 @@ const METADATA_PATH = './metadata.ts';
 const APP_DIR = `${BUCKET_DIR}/app`;
 const APP_ICONS_DIR = `${APP_DIR}/icons`;
 const APP_SCREENS_DIR = `${APP_DIR}/screenshots`;
-const APP_MANIFEST = `${APP_DIR}/manifest.json`;
-const APP_CDN_MANIFEST = `${APP_DIR}/manifest.cdn.json`;
+const APP_MANIFEST = `${APP_DIR}/manifest.webmanifest`;
+const APP_CDN_MANIFEST = `${APP_DIR}/manifest.cdn.webmanifest`;
 const APP_YANDEX = `${APP_DIR}/yandex-browser-manifest.json`;
 const APP_BROWSERCONFIG = `${APP_DIR}/browserconfig.xml`;
 const APP_PWA_JS = `${APP_DIR}/pwa.js`;
@@ -199,7 +199,7 @@ if (screenshots.length !== 0) {
 }
 
 /* Write manifest json */
-log(clc.blue('\nGenerating (manifest.json)...'));
+log(clc.blue('\nGenerating (manifest.webmanifest)...'));
 const commonManifestOptions: Parameters<typeof getManifest>[0] = {
   id: options.id,
   name: options.name,
@@ -228,14 +228,14 @@ const manifest = getManifest({
   serviceWorker: './serviceworker.js',
 });
 await fs.promises.writeFile(path.join(APP_MANIFEST), JSON.stringify(manifest, null, 2));
-log(clc.green(`  +  Copied manifest.json at ${APP_MANIFEST}`));
+log(clc.green(`  +  Copied manifest.webmanifest at ${APP_MANIFEST}`));
 // Manifest for CDN
 const cdnManifest = getManifest({
   ...commonManifestOptions,
   base: options.origin,
 });
 await fs.promises.writeFile(path.join(APP_CDN_MANIFEST), JSON.stringify(cdnManifest, null, 2));
-log(clc.green(`  +  Copied manifest.cdn.json at ${APP_CDN_MANIFEST}`));
+log(clc.green(`  +  Copied manifest.cdn.webmanifest at ${APP_CDN_MANIFEST}`));
 
 /* Write yandex manifest json */
 log(clc.blue('\nGenerating (yandex-browser-manifest.json)...'));
@@ -260,7 +260,7 @@ log(clc.green(`  +  Copied browserconfig.xml at ${APP_BROWSERCONFIG}`));
 log(clc.blue('\nGenerating (HTML Meta Tags)...'));
 const commonMetatagsOptions = {
   iconsPath: '/app/icons',
-  manifestPath: '/app/manifest.json',
+  manifestPath: '/app/manifest.webmanifest',
   appleStatusBarStyle: options.appleStatusBarStyle,
   appleTitle: options.name,
   applicationName: options.name,
@@ -276,7 +276,7 @@ const metatagsResult = getMetaTags({
 const cdnMetatagsResult = getMetaTags({
   ...commonMetatagsOptions,
   iconsPath: './app/icons',
-  manifestPath: './app/manifest.cdn.json',
+  manifestPath: './app/manifest.cdn.webmanifest',
   base: `https://cdn.jsdelivr.net/gh/${GITHUB_REPO}@${GITHUB_BRANCH}/bucket/`,
 });
 const getMetaTagsHTML = (metatags: string[]) => {

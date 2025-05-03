@@ -3,29 +3,24 @@ import { Hono } from 'hono';
 import { metadata } from '../metadata';
 import { AssetsFetcher } from './utils/assets-fetcher';
 
-type HonoContext = {
+const app = new Hono<{
   Bindings: Env & { __STATIC_CONTENT: KVNamespace };
   Variables: {
     assets: AssetsFetcher;
   };
-};
-
-const app = new Hono<HonoContext>()
+}>()
   .use(async (c, next) => {
-    const assets = new AssetsFetcher(c.env.__STATIC_CONTENT, assetsManifest, c.executionCtx);
-
-    c.set('assets', assets);
+    c.set('assets', new AssetsFetcher(c.env.__STATIC_CONTENT, assetsManifest, c.executionCtx));
 
     await next();
   })
   .get('*', async (c) => {
-    const { assets } = c.var;
     switch (c.req.method) {
       case 'GET':
       case 'HEAD': {
-        const response = await assets.fetch(c.req.raw, {
+        const response = await c.var.assets.fetch(c.req.raw, {
           // Bypass cache in development environment
-          // bypassCache: c.env.CF_ENV === 'local',
+          bypassCache: new URL(c.req.url).hostname === 'localhost',
           cacheKey(defaultKey) {
             const url = new URL(defaultKey.url);
             url.pathname = `__cache_build_${metadata.build.hash}__${url.pathname}`;

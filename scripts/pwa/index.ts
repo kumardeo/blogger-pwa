@@ -1,3 +1,4 @@
+import { Workbox } from 'workbox-window';
 import { metadata } from '../../metadata';
 import { lazy } from './lazy';
 
@@ -23,24 +24,26 @@ export const groupLog = (title: string | string[], logs: (unknown | unknown[])[]
 
 if ('serviceWorker' in navigator) {
   /** Register Workbox Service Worker */
-  navigator.serviceWorker
-    .register(config.serviceWorker.source, {
-      scope: config.serviceWorker.scope,
-    })
+  const workbox = new Workbox(config.serviceWorker.source, {
+    scope: config.serviceWorker.scope,
+  });
+
+  workbox
+    .register({ immediate: true })
     .then((registration) => {
       const logs: string[][] = [];
-      if (registration.scope) {
+      if (registration?.scope) {
         logs.push([`Scope: ${registration.scope}`]);
       }
-      if (registration.active?.scriptURL) {
+      if (registration?.active?.scriptURL) {
         logs.push([`Script:  ${registration.active.scriptURL}`]);
       }
-      logs.push(['Build by: Fineshop Design'], ['Developer site: https://fineshopdesign.com']);
+      logs.push(['Build by: Fineshop Design (https://fineshopdesign.com)']);
 
-      groupLog(['%cService Worker: Registered Successfully', 'color: green'], logs);
+      groupLog(['%c[sw] Registered successfully', 'color: green'], logs);
     })
     .catch((error) => {
-      groupLog(['%cService Worker: Registration Failed', 'color: red'], ['Error:', error]);
+      groupLog(['%c[sw] Registration failed', 'color: red'], ['Error:', error]);
     });
 
   /** Helper function to initialize OneSignal */
@@ -76,10 +79,10 @@ if ('serviceWorker' in navigator) {
 
         logs.push(['Notification:', notification.permissionNative]);
 
-        groupLog(['%cOneSignal: Initialized Successfully', 'color: green'], logs);
+        groupLog(['%c[onesignal] Initialized successfully', 'color: green'], logs);
       })
       .catch((error: unknown) => {
-        groupLog(['%cOneSignal: Initialization Failed', 'color: red'], ['Error:', error]);
+        groupLog(['%c[onesignal] Initialization failed', 'color: red'], ['Error:', error]);
       });
   };
 
