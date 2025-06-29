@@ -1,10 +1,14 @@
 {
   "$schema": "node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
-    "ignore": ["node_modules", "build", ".workers-build", "public", "bucket", "output", ".wrangler"]
+    "includes": ["**", "!**/node_modules", "!**/build", "!**/.workers-build", "!**/public", "!**/bucket", "!**/output", "!**/.wrangler"]
   },
-  "organizeImports": {
-    "enabled": true
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
   },
   "linter": {
     "enabled": true,
@@ -14,7 +18,16 @@
         "useExhaustiveDependencies": "off"
       },
       "style": {
-        "useEnumInitializers": "off"
+        "useEnumInitializers": "off",
+        "noParameterAssign": "error",
+        "useAsConstAssertion": "error",
+        "useDefaultParameterLast": "error",
+        "useSelfClosingElements": "error",
+        "useSingleVarDeclarator": "error",
+        "noUnusedTemplateLiteral": "error",
+        "useNumberNamespace": "error",
+        "noInferrableTypes": "error",
+        "noUselessElse": "error"
       }
     }
   },
@@ -35,13 +48,7 @@
   },
   "overrides": [
     {
-      "include": ["package.json"],
-      "formatter": {
-        "enabled": false
-      }
-    },
-    {
-      "include": ["workers/workers-types.d.ts"],
+      "includes": ["**/workers/workers-types.d.ts"],
       "formatter": {
         "enabled": false
       },
