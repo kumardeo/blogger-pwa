@@ -31,7 +31,7 @@ export default {
   ],
   pwa: {
     logs: true,
-    // OneSignal is not available if you are not using cloudflare workers
+    // OneSignal is only available if you are using cloudflare workers
     oneSignalEnabled: false,
     oneSignalConfig: {
       appId: '********-****-****-****-************',
