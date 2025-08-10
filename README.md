@@ -120,9 +120,9 @@ export default {
   pwa: {
     logs: true,
     // OneSignal is only available if you are using cloudflare workers
-    oneSignalEnabled: false,
+    oneSignalEnabled: false, // To enable OneSignal, set this to true
     oneSignalConfig: {
-      appId: '********-****-****-****-************',
+      appId: '********-****-****-****-************', // Replace with your OneSignal App Id
       allowLocalhostAsSecureOrigin: true,
     },
   },
@@ -170,8 +170,9 @@ If you are using Cloudflare Workers, you can integrate OneSignal push notificati
    * **Updater service worker filename**: `onesignalworker.js`
    * **Service worker registration scope**: `/app/onesignal/`
 7. Find App's `App Id` and note it down.
-8. Add your `App Id` in `pwa.config.ts` file and commit the changes.
+8. Put your `App Id` in `pwa.config.ts` file.
 9. Also set `oneSignalEnabled` to `true`.
+10. Commit the changes.
 
 > [!WARNING]
 > Do not add any code provided by OneSignal in the Template XML because I have already added it as per requirement in `pwa.js`.
