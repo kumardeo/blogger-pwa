@@ -1,13 +1,13 @@
 {
-  "name": "My Blog",
+  "name": "Asha Real Estate",
   "id": "/",
-  "short_name": "My Blog",
-  "description": "My blog description goes here...",
+  "short_name": "Asha Real Estate",
+  "description": "Asha Real Estate description goes here...",
   "dir": "auto",
   "lang": "en-US",
   "orientation": "natural",
-  "start_url": "https://hello-example.blogspot.com/?utm_source=homescreen",
-  "scope": "https://hello-example.blogspot.com/",
+  "start_url": "https://asharealestate.asnp.in/?utm_source=homescreen",
+  "scope": "https://asharealestate.asnp.in/",
   "display": "standalone",
   "prefer_related_applications": false,
   "background_color": "#fff",
@@ -118,7 +118,7 @@
       "name": "Shortcut 1",
       "short_name": "Shortcut 1",
       "description": "Shortcut 1 description goes here...",
-      "url": "https://hello-example.blogspot.com/search/label/shortcut-1?utm_source=homescreen",
+      "url": "https://asharealestate.asnp.in/search/label/shortcut-1?utm_source=homescreen",
       "icons": [
         {
           "src": "icons/android-chrome-96x96.png",
@@ -130,7 +130,7 @@
       "name": "Shortcut 2",
       "short_name": "Shortcut 2",
       "description": "Shortcut 2 description goes here...",
-      "url": "https://hello-example.blogspot.com/search/label/shortcut-2?utm_source=homescreen",
+      "url": "https://asharealestate.asnp.in/search/label/shortcut-2?utm_source=homescreen",
       "icons": [
         {
           "src": "icons/android-chrome-96x96.png",
