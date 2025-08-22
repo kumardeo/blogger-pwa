@@ -25,18 +25,17 @@
     "generate": "tsx ./scripts/generate.ts",
     "deploy": "npm run generate && wrangler deploy",
     "dev": "npm run generate && wrangler dev",
-    "upgrade": "ncu --interactive"
+    "upgrade": "npx npm-check-updates --peer --interactive --format group"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.1.4",
-    "@types/node": "^24.2.1",
+    "@biomejs/biome": "^2.2.0",
+    "@types/node": "^24.3.0",
     "arg": "^5.0.2",
     "console-log-colors": "^0.5.0",
     "deepmerge": "^4.3.1",
-    "esbuild": "^0.25.8",
+    "esbuild": "^0.25.9",
     "favicons": "^7.2.0",
-    "npm-check-updates": "^18.0.2",
-    "tsx": "^4.20.3",
+    "tsx": "^4.20.4",
     "typescript": "^5.9.2",
     "workbox-build": "^7.3.0",
     "workbox-core": "^7.3.0",
@@ -45,7 +44,7 @@
     "workbox-routing": "^7.3.0",
     "workbox-strategies": "^7.3.0",
     "workbox-window": "^7.3.0",
-    "wrangler": "^4.28.1",
+    "wrangler": "^4.32.0",
     "xml-js": "^1.6.11"
   }
 }
