@@ -2,9 +2,9 @@ import type { Config } from './types';
 
 export default {
   id: '/',
-  name: 'My Blog',
-  shortName: 'My Blog',
-  description: 'My blog description goes here...',
+  name: 'Asha Real Estate',
+  shortName: 'Asha Real Estate',
+  description: 'Asha Real Estate Vadodra | Buy, Sell, Rent Property in Vadodara, Flats, Villa, offices, House.',
   direction: 'auto',
   language: 'en-US',
   backgroundColor: '#fff',
@@ -17,15 +17,15 @@ export default {
   preferRelatedApplications: false,
   shortcuts: [
     {
-      name: 'Shortcut 1',
-      shortName: 'Shortcut 1',
-      description: 'Shortcut 1 description goes here...',
+      name: 'Asha Real Estate',
+      shortName: 'Asha Real Estate',
+      description: 'Asha Real Estate Vadodra | Buy, Sell, Rent Property in Vadodara, Flats, Villa, offices, House.',
       url: '/search/label/shortcut-1?utm_source=homescreen',
     },
     {
-      name: 'Shortcut 2',
-      shortName: 'Shortcut 2',
-      description: 'Shortcut 2 description goes here...',
+      name: 'Asha Real Estate',
+      shortName: 'Asha Real Estate',
+      description: 'Asha Real Estate Vadodra | Buy, Sell, Rent Property in Vadodara, Flats, Villa, offices, House.',
       url: '/search/label/shortcut-2?utm_source=homescreen',
     },
   ],
@@ -39,5 +39,5 @@ export default {
     },
   },
   // Please replace with your blog url if you are using CDN (JsDelivr)
-  origin: 'https://hello-example.blogspot.com',
+  origin: 'https://asharealestate.asnp.in',
 } satisfies Config;
