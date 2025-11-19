@@ -34,10 +34,10 @@ export default {
     // OneSignal is only available if you are using cloudflare workers
     oneSignalEnabled: false, // To enable OneSignal, set this to true
     oneSignalConfig: {
-      appId: '********-****-****-****-************', // Replace with your OneSignal App Id
+      appId: 'bc16f8f3-1e84-4079-b681-cdba4ddbaa27', // Replace with your OneSignal App Id
       allowLocalhostAsSecureOrigin: true,
     },
   },
   // Please replace with your blog url if you are using CDN (JsDelivr)
-  origin: 'https://hello-example.blogspot.com',
+  origin: 'https://www.cevta.site/',
 } satisfies Config;
