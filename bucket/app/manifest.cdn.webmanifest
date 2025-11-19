@@ -1,8 +1,8 @@
 {
-  "name": "My Blog",
+  "name": "Cevta",
   "id": "/",
-  "short_name": "My Blog",
-  "description": "My blog description goes here...",
+  "short_name": "Cevta",
+  "description": "Cevta - Thủ Thuật Đa Nền Tảng",
   "dir": "auto",
   "lang": "en-US",
   "orientation": "natural",
