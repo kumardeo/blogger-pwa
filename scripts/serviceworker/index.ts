@@ -1,7 +1,8 @@
-import { cacheNames, clientsClaim, setCacheNameDetails } from 'workbox-core';
+import { CacheableResponsePlugin } from 'workbox-cacheable-response';
+import { clientsClaim, setCacheNameDetails } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { cleanupOutdatedCaches, matchPrecache, precacheAndRoute } from 'workbox-precaching';
-import { registerRoute, setCatchHandler, setDefaultHandler } from 'workbox-routing';
+import { registerRoute } from 'workbox-routing';
 import { CacheFirst, NetworkOnly } from 'workbox-strategies';
 
 declare const self: ServiceWorkerGlobalScope;
@@ -26,32 +27,51 @@ cleanupOutdatedCaches();
 
 precacheAndRoute(self.__WB_MANIFEST);
 
-setDefaultHandler(new NetworkOnly());
+registerRoute(
+  ({ sameOrigin, request }) => sameOrigin && request.mode === 'navigate',
+  new NetworkOnly({
+    plugins: [
+      {
+        handlerDidError: async ({ request, error }) => {
+          console.log('[sw] handlerDidError', request.url, error);
 
-const version = cacheNames.suffix;
+          if (error && 'name' in error && error.name === 'no-response') {
+            return await matchPrecache('/app/offline/index.html');
+          }
+        },
+      },
+    ],
+  }),
+);
 
 registerRoute(
-  /.(?:css|js|png|gif|jpg|svg|ico)$/,
+  ({ request, url }) => request.destination === 'style' && /^https:\/\/fonts\.googleapis\.com$/i.test(url.origin),
   new CacheFirst({
-    cacheName: `images-js-css-${version}`,
+    cacheName: 'google-fonts-cache',
     plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
       new ExpirationPlugin({
-        maxAgeSeconds: 60 * 24 * 60 * 60,
-        maxEntries: 200,
-        purgeOnQuotaError: true,
+        maxEntries: 20,
+        maxAgeSeconds: 60 * 60 * 24 * 365,
       }),
     ],
   }),
-  'GET',
 );
 
-setCatchHandler(async ({ request }) => {
-  switch (request.destination) {
-    case 'document': {
-      return matchPrecache('/app/offline') as Promise<Response>;
-    }
-    default: {
-      return Response.error();
-    }
-  }
-});
+registerRoute(
+  ({ request, url }) => request.destination === 'font' && /^https:\/\/fonts\.gstatic\.com$/i.test(url.origin),
+  new CacheFirst({
+    cacheName: 'gstatic-fonts-cache',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+      new ExpirationPlugin({
+        maxEntries: 40,
+        maxAgeSeconds: 60 * 60 * 24 * 365,
+      }),
+    ],
+  }),
+);
