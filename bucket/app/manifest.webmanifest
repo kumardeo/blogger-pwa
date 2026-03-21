@@ -1,17 +1,17 @@
 {
   "name": "My Blog",
-  "id": "/",
   "short_name": "My Blog",
   "description": "My blog description goes here...",
   "dir": "auto",
   "lang": "en-US",
-  "orientation": "natural",
-  "start_url": "/?utm_source=homescreen",
-  "scope": "/",
-  "display": "standalone",
-  "prefer_related_applications": false,
   "background_color": "#fff",
   "theme_color": "#fff",
+  "display": "standalone",
+  "orientation": "natural",
+  "scope": "/",
+  "start_url": "/?utm_source=homescreen",
+  "prefer_related_applications": false,
+  "id": "/",
   "icons": [
     {
       "src": "icons/favicon.ico",
@@ -115,31 +115,26 @@
   ],
   "shortcuts": [
     {
+      "icons": [
+        {
+          "src": "icons/android-chrome-96x96.png",
+          "sizes": "96x96"
+        }
+      ],
       "name": "Shortcut 1",
       "short_name": "Shortcut 1",
-      "description": "Shortcut 1 description goes here...",
-      "url": "/search/label/shortcut-1?utm_source=homescreen",
-      "icons": [
-        {
-          "src": "icons/android-chrome-96x96.png",
-          "sizes": "96x96"
-        }
-      ]
+      "description": "Shortcut 1 description goes here..."
     },
     {
-      "name": "Shortcut 2",
-      "short_name": "Shortcut 2",
-      "description": "Shortcut 2 description goes here...",
-      "url": "/search/label/shortcut-2?utm_source=homescreen",
       "icons": [
         {
           "src": "icons/android-chrome-96x96.png",
           "sizes": "96x96"
         }
-      ]
+      ],
+      "name": "Shortcut 2",
+      "short_name": "Shortcut 2",
+      "description": "Shortcut 2 description goes here..."
     }
-  ],
-  "serviceworker": {
-    "src": "serviceworker.js"
-  }
+  ]
 }

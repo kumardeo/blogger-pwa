@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
-    "includes": ["**", "!**/node_modules", "!**/build", "!**/.workers-build", "!**/public", "!**/bucket", "!**/output", "!**/.wrangler"]
+    "includes": ["**", "!**/node_modules", "!!**/build", "!!**/.workers-build", "!!**/public", "!!**/bucket", "!!**/output", "!!**/.wrangler"]
   },
   "assist": {
     "actions": {
