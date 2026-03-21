@@ -8,38 +8,6 @@ export interface GetManifestOptions {
   screenshotsBase?: string;
 }
 
-// shortName = name as string | undefined,
-// description = name as string | undefined,
-// direction = 'auto',
-// language = 'en-US',
-// orientation = 'natural',
-// base = undefined as string | undefined,
-// startUrl = '/?utm_source=homescreen',
-// scope = '/',
-// display = 'standalone',
-// backgroundColor = '#fff',
-// themeColor = backgroundColor as string | undefined,
-// serviceWorker = undefined as string | undefined,
-// iconsPath = './icons',
-// screenshotsPath = './screenshots',
-// screenshots = [] as {
-//   src: string;
-//   type?: string;
-//   formFactor?: 'wide' | 'narrow';
-// }[],
-// shortcuts = [] as {
-//   name: string;
-//   shortName: string;
-//   description: string;
-//   url: string;
-// }[],
-// preferRelatedApplications = false,
-// relatedApplications = [] as {
-//   id?: string;
-//   url: string;
-//   platform: string;
-// }[],
-
 export function getManifest(
   { manifest: { screenshots, shortcuts, ...manifest } = {}, base, iconsBase = '.', screenshotsBase = '.' }: GetManifestOptions = { manifest: {} },
 ): Manifest {
@@ -126,7 +94,7 @@ export function getManifest(
       : undefined),
     ...(shortcuts && shortcuts.length !== 0
       ? {
-          shortcuts: shortcuts.map(({ url, ...shortcut }) => ({
+          shortcuts: shortcuts.map((shortcut) => ({
             icons: [
               {
                 src: path.posix.join(iconsBase, 'android-chrome-96x96.png'),
@@ -134,9 +102,9 @@ export function getManifest(
               },
             ],
             ...shortcut,
-            ...(base && url
+            ...(base && shortcut.url
               ? {
-                  url: new URL(url, base).toString(),
+                  url: new URL(shortcut.url, base).toString(),
                 }
               : undefined),
           })),
