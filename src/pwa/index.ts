@@ -29,7 +29,7 @@ export interface PWAOptions {
 
 const config = JSON.parse(__OPTIONS__) as PWAOptions;
 
-export const groupLog = (title: string | string[], logs: (unknown | unknown[])[]) => {
+function groupLog(title: string | string[], logs: (unknown | unknown[])[]) {
   if (config.logs) {
     console.groupCollapsed.apply(console, Array.isArray(title) ? title : [title]);
     for (const log of logs) {
@@ -37,7 +37,7 @@ export const groupLog = (title: string | string[], logs: (unknown | unknown[])[]
     }
     console.groupEnd();
   }
-};
+}
 
 if ('serviceWorker' in navigator) {
   /** Register Workbox Service Worker */

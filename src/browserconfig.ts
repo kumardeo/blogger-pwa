@@ -1,8 +1,13 @@
 import path from 'node:path';
 import { js2xml } from 'xml-js';
 
-export const getBrowserConfig = ({ iconsBase = '/', tileColor = '#fff' } = {}) =>
-  js2xml(
+export interface GetBrowserConfigOptions {
+  iconsBase?: string;
+  tileColor?: string;
+}
+
+export function getBrowserConfig({ iconsBase = '/', tileColor = '#fff' }: GetBrowserConfigOptions = {}): string {
+  return js2xml(
     {
       declaration: {
         attributes: {
@@ -73,3 +78,4 @@ export const getBrowserConfig = ({ iconsBase = '/', tileColor = '#fff' } = {}) =
       spaces: 2,
     },
   );
+}
