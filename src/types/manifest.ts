@@ -416,6 +416,13 @@ export interface Shortcut {
 
 export type Direction = 'auto' | 'ltr' | 'rtl';
 
+/**
+ * **Non-standard**
+ *
+ * @see https://github.com/WICG/pwa-url-handler/blob/main/handle_links/explainer.md
+ */
+export type HandleLinks = 'auto' | 'preferred' | 'not-preferred';
+
 export interface Manifest {
   /**
    * The `background_color` manifest member is used to specify an initial background color for your web application. This color appears in the application window before your application's stylesheets have loaded.
@@ -614,7 +621,7 @@ export interface Manifest {
   shortcuts?: Shortcut[];
 
   /**
-   * The start_url manifest member is used to specify the URL that should be opened when a user launches your web application, such as when tapping the application's icon on their device's home screen or in an application list.
+   * The `start_url` manifest member is used to specify the URL that should be opened when a user launches your web application, such as when tapping the application's icon on their device's home screen or in an application list.
    *
    * @see https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest/Reference/start_url
    */
@@ -641,4 +648,17 @@ export interface Manifest {
    * Not implemented
    */
   iarc_rating_id?: string;
+
+  /**
+   * **Non-standard**
+   *
+   * The non-standard `handle_links` manifest member indicate an app's link handling preference.
+   *
+   * - `auto`:  Default value if `handle_links` is not found in the manifest. The user agent may choose between `preferred` and `not-preferred`.
+   * - `preferred`: The user agent should handle links using matching app clients and may promote link handling behavior.
+   * - `not-preferred`: The user agent should not handle links using matching app clients and may not promote link handling behavior.
+   *
+   * @see https://github.com/WICG/pwa-url-handler/blob/main/handle_links/explainer.md
+   */
+  handle_links?: HandleLinks;
 }
