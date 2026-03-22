@@ -13,7 +13,6 @@ export const DEFAULT_MANIFEST = {
   orientation: 'natural',
   scope: '/',
   start_url: '/?utm_source=homescreen',
-  prefer_related_applications: false,
 } as const satisfies Manifest;
 
 export const DEFAULT_CONFIG = {

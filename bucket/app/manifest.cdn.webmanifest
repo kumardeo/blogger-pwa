@@ -10,8 +10,8 @@
   "orientation": "natural",
   "scope": "https://hello-example.blogspot.com/",
   "start_url": "https://hello-example.blogspot.com/?utm_source=homescreen",
-  "prefer_related_applications": false,
   "id": "/",
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "icons/favicon.ico",
