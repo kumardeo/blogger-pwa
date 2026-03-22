@@ -24,7 +24,7 @@
     "check:types": "tsc --noEmit",
     "generate": "tsx ./src/generate.ts",
     "deploy": "npm run generate && wrangler deploy",
-    "dev": "npm run generate && wrangler dev",
+    "preview": "npm run generate && wrangler dev",
     "upgrade": "npx npm-check-updates --peer --interactive --format group"
   },
   "devDependencies": {

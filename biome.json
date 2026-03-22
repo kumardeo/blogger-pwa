@@ -40,21 +40,5 @@
     "formatter": {
       "quoteStyle": "single"
     }
-  },
-  "json": {
-    "parser": {
-      "allowComments": true
-    }
-  },
-  "overrides": [
-    {
-      "includes": ["**/workers/workers-types.d.ts"],
-      "formatter": {
-        "enabled": false
-      },
-      "linter": {
-        "enabled": false
-      }
-    }
-  ]
+  }
 }
