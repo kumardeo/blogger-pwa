@@ -142,7 +142,7 @@ export default defineConfig({
 | :-------------------------: | :------: | :--------------------: | :------: | :------------------------------------------------ |
 |        `manifest.id`        | `string` |         `'/'`          |    no    | Id of your app                                    |
 |       `manifest.name`       | `string` |       `'My App'`       |   yes    | Name of your app (Blog name)                      |
-|    `manifest.short_name`    | `string` | `'My App Short Name'`  |   yes    | Short name of your app                            |
+|    `manifest.short_name`    | `string` |       `'My App'`       |   yes    | Short name of your app                            |
 |   `manifest.description`    | `string` | `'My App description'` |   yes    | Description of your app                           |
 | `manifest.background_color` | `string` |        `'#fff'`        |    no    | HEX background color of the app                   |
 |   `manifest.theme_color`    | `string` |        `'#fff'`        |    no    | HEX theme color of the app                        |
