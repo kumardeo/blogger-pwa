@@ -1,12 +1,13 @@
 import fs from 'node:fs';
 
-export const existsPath = async (path: string) =>
-  fs.promises
+export async function existsPath(path: string): Promise<boolean> {
+  return fs.promises
     .stat(path)
     .then(() => true)
     .catch(() => false);
+}
 
-export const createDirectory = async (directoryPath: string, fresh = true) => {
+export async function createDirectory(directoryPath: string, fresh = true): Promise<string | undefined> {
   if (fresh === true) {
     const exists = await fs.promises
       .stat(directoryPath)
@@ -17,12 +18,11 @@ export const createDirectory = async (directoryPath: string, fresh = true) => {
     }
   }
   return await fs.promises.mkdir(directoryPath, { recursive: true });
-};
+}
 
-export const getDirectoryFiles = async (directoryPath: string) => {
+export async function getDirectoryFiles(directoryPath: string): Promise<string[]> {
   if (await existsPath(directoryPath)) {
-    const fileNames = await fs.promises.readdir(directoryPath);
-    return fileNames;
+    return fs.promises.readdir(directoryPath);
   }
   return [];
-};
+}

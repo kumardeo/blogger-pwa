@@ -1,9 +1,11 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+
   "eslint.enable": false,
   "editor.codeActionsOnSave": {
     "source.organizeImports.biome": "explicit"
   },
+
   "[json]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "biomejs.biome"
@@ -40,31 +42,6 @@
     "editor.defaultFormatter": "vscode.html-language-features",
     "editor.tabSize": 2
   },
-  "javascript.validate.enable": false,
-  "cSpell.words": [
-    "biomejs",
-    "browserconfig",
-    "chromeos",
-    "compat",
-    "deepmerge",
-    "favicons",
-    "Fineshop",
-    "fineshopdesign",
-    "fullscreen",
-    "googlebot",
-    "homescreen",
-    "hono",
-    "itty",
-    "Kumar",
-    "kumardeo",
-    "metatags",
-    "mstile",
-    "nodisplay",
-    "outdir",
-    "precache",
-    "precaching",
-    "serviceworker",
-    "tsbuildinfo",
-    "tsup"
-  ]
+
+  "cSpell.words": []
 }

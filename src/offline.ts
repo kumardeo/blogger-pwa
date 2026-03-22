@@ -1,4 +1,5 @@
-export const getOfflineHTML = (title = 'No internet connection', headMetaTags = '') => `<!DOCTYPE html>
+export function getOfflineHTML(title = 'No internet connection', headMetaTags = ''): string {
+  return `<!DOCTYPE html>
 <html>
 
 <head>
@@ -158,3 +159,4 @@ export const getOfflineHTML = (title = 'No internet connection', headMetaTags = 
 </body>
 
 </html>`;
+}

@@ -8,23 +8,28 @@ declare global {
 }
 
 declare const OneSignal: unknown;
-declare const __PWA_CONFIG_JSON: string;
+declare const __OPTIONS__: string;
 
-const config = JSON.parse(__PWA_CONFIG_JSON) as {
+interface OneSignalOptions {
+  appId?: string;
+  allowLocalhostAsSecureOrigin?: boolean;
+}
+
+export interface PWAOptions {
   logs: boolean;
-  oneSignalEnabled: boolean;
-  oneSignalSDK: string;
-  oneSignalConfig: {
-    appId: string;
-    allowLocalhostAsSecureOrigin: boolean;
+  oneSignal: OneSignalOptions & {
+    enabled: boolean;
+    sdk: string;
   };
   serviceWorker: {
     source: string;
     scope: string;
   };
-};
+}
 
-export const groupLog = (title: string | string[], logs: (unknown | unknown[])[]) => {
+const config = JSON.parse(__OPTIONS__) as PWAOptions;
+
+function groupLog(title: string | string[], logs: (unknown | unknown[])[]) {
   if (config.logs) {
     console.groupCollapsed.apply(console, Array.isArray(title) ? title : [title]);
     for (const log of logs) {
@@ -32,7 +37,7 @@ export const groupLog = (title: string | string[], logs: (unknown | unknown[])[]
     }
     console.groupEnd();
   }
-};
+}
 
 if ('serviceWorker' in navigator) {
   /** Register Workbox Service Worker */
@@ -99,8 +104,11 @@ if ('serviceWorker' in navigator) {
   };
 
   /** Initialize OneSignal if enabled */
-  if (config.oneSignalEnabled) {
-    const oneSignalConfig = Object.assign({}, config.oneSignalConfig);
+  if (config.oneSignal.enabled) {
+    const oneSignalConfig = {
+      appId: config.oneSignal.appId,
+      allowLocalhostAsSecureOrigin: config.oneSignal.allowLocalhostAsSecureOrigin,
+    } satisfies OneSignalOptions;
     window.OneSignalDeferred = window.OneSignalDeferred || [];
     window.OneSignalDeferred.push(initializeOneSignal(oneSignalConfig));
 
@@ -111,7 +119,7 @@ if ('serviceWorker' in navigator) {
     if (typeof OneSignal === 'undefined') {
       lazy.then(() => {
         const script = document.createElement('script');
-        script.src = config.oneSignalSDK;
+        script.src = config.oneSignal.sdk;
         script.async = true;
         script.defer = true;
         const firstScript = document.getElementsByTagName('script')[0] as HTMLScriptElement | undefined;

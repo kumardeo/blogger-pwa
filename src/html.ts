@@ -1,4 +1,5 @@
-export const getIndexHTML = (title = 'My App', headMetaTags = '') => `<!DOCTYPE html>
+export function getIndexHTML(title = 'My App', headMetaTags = ''): string {
+  return `<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -62,3 +63,4 @@ export const getIndexHTML = (title = 'My App', headMetaTags = '') => `<!DOCTYPE 
 </body>
 
 </html>`;
+}

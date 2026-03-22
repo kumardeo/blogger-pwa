@@ -1,8 +1,8 @@
 import path from 'node:path';
 import { js2xml } from 'xml-js';
 
-const getLinkElement = ({ rel = '', type = '', sizes = '', href = '', media = '' }) =>
-  js2xml({
+function getLinkElement({ rel = '', type = '', sizes = '', href = '', media = '' }): string {
+  return js2xml({
     elements: [
       {
         type: 'element',
@@ -17,9 +17,10 @@ const getLinkElement = ({ rel = '', type = '', sizes = '', href = '', media = ''
       },
     ],
   });
+}
 
-const getMetaElement = ({ name = '', content = '' }) =>
-  js2xml({
+function getMetaElement({ name = '', content = '' }): string {
+  return js2xml({
     elements: [
       {
         type: 'element',
@@ -31,20 +32,24 @@ const getMetaElement = ({ name = '', content = '' }) =>
       },
     ],
   });
+}
 
-const getHref = (path: string, base?: string) => (base ? new URL(path, base).toString() : path);
+function getHref(path: string, base?: string): string {
+  return base ? new URL(path, base).toString() : path;
+}
 
-const getAppleIconMetaTags = ({ iconsPath = '/', base = undefined as string | undefined } = {}) =>
-  ['57x57', '60x60', '72x72', '76x76', '114x114', '120x120', '144x144', '152x152', '167x167', '180x180', '1024x1024'].map((size) =>
+function getAppleIconMetaTags({ iconsBase = '/', base = undefined as string | undefined } = {}): string[] {
+  return ['57x57', '60x60', '72x72', '76x76', '114x114', '120x120', '144x144', '152x152', '167x167', '180x180', '1024x1024'].map((size) =>
     getLinkElement({
       rel: 'apple-touch-icon',
       sizes: size,
-      href: getHref(path.posix.join(iconsPath, `apple-touch-icon-${size}.png`), base),
+      href: getHref(path.posix.join(iconsBase, `apple-touch-icon-${size}.png`), base),
     }),
   );
+}
 
-const getSplashScreenMetaTags = ({ screensPath = '/', base = undefined as string | undefined } = {}) =>
-  [
+function getSplashScreenMetaTags({ screensBase = '/', base = undefined as string | undefined } = {}): string[] {
+  return [
     {
       width: 320,
       height: 568,
@@ -220,26 +225,45 @@ const getSplashScreenMetaTags = ({ screensPath = '/', base = undefined as string
       media: `(device-width: ${width}px) and (device-height: ${height}px) and (-webkit-device-pixel-ratio: ${ratio}) and (orientation: ${
         portrait === true ? 'portrait' : 'landscape'
       })`,
-      href: getHref(path.posix.join(screensPath, `apple-touch-startup-image-${size}.png`), base),
+      href: getHref(path.posix.join(screensBase, `apple-touch-startup-image-${size}.png`), base),
     }),
   );
+}
 
-export const getMetaTags = ({
-  base = undefined as string | undefined,
-  iconsPath = '/icons',
+export interface GetMetaTagsOptions {
+  base?: string;
+  iconsBase?: string;
+  manifestPath?: string;
+  yandexManifestPath?: string;
+  browserConfigPath?: string;
+  themeColor?: string;
+  applicationName?: string;
+  appleStatusBarStyle?: string;
+  appleTitle?: string;
+  tileColor?: string;
+}
+
+export interface GetMetaTagsResult {
+  all: string[];
+  noSplash: string[];
+}
+
+export function getMetaTags({
+  base,
+  iconsBase = '/icons',
   manifestPath = '/manifest.webmanifest',
-  yandexManifestPath = undefined as string | undefined,
-  browserConfigPath = undefined as string | undefined,
+  yandexManifestPath,
+  browserConfigPath,
   themeColor = '#fff',
   applicationName = 'My App',
   appleStatusBarStyle = 'black-translucent',
   appleTitle = 'My App',
   tileColor = '#fff',
-} = {}) => {
-  const getIconHref = (filename: string) => getHref(path.posix.join(iconsPath, filename), base);
+}: GetMetaTagsOptions = {}): GetMetaTagsResult {
+  const getIconHref = (filename: string) => getHref(path.posix.join(iconsBase, filename), base);
   const generate = (splashScreens = true) =>
     [
-      ...getAppleIconMetaTags({ iconsPath, base }),
+      ...getAppleIconMetaTags({ iconsBase, base }),
       getLinkElement({
         rel: 'icon',
         type: 'image/png',
@@ -296,7 +320,7 @@ export const getMetaTags = ({
         name: 'apple-mobile-web-app-title',
         content: appleTitle,
       }),
-      ...(splashScreens ? getSplashScreenMetaTags({ screensPath: iconsPath, base }) : []),
+      ...(splashScreens ? getSplashScreenMetaTags({ screensBase: iconsBase, base }) : []),
       getMetaElement({
         name: 'msapplication-TileColor',
         content: tileColor,
@@ -316,8 +340,9 @@ export const getMetaTags = ({
           href: getHref(path.posix.join(yandexManifestPath), base),
         }),
     ].filter(Boolean) as string[];
+
   return {
     all: generate(),
     noSplash: generate(false),
   };
-};
+}

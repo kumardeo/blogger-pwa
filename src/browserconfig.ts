@@ -1,8 +1,13 @@
 import path from 'node:path';
 import { js2xml } from 'xml-js';
 
-export const getBrowserConfig = ({ iconsPath = '/', tileColor = '#fff' } = {}) =>
-  js2xml(
+export interface GetBrowserConfigOptions {
+  iconsBase?: string;
+  tileColor?: string;
+}
+
+export function getBrowserConfig({ iconsBase = '/', tileColor = '#fff' }: GetBrowserConfigOptions = {}): string {
+  return js2xml(
     {
       declaration: {
         attributes: {
@@ -27,28 +32,28 @@ export const getBrowserConfig = ({ iconsPath = '/', tileColor = '#fff' } = {}) =
                       type: 'element',
                       name: 'square70x70logo',
                       attributes: {
-                        src: path.posix.join(iconsPath, 'mstile-70x70.png'),
+                        src: path.posix.join(iconsBase, 'mstile-70x70.png'),
                       },
                     },
                     {
                       type: 'element',
                       name: 'square150x150logo',
                       attributes: {
-                        src: path.posix.join(iconsPath, 'mstile-150x150.png'),
+                        src: path.posix.join(iconsBase, 'mstile-150x150.png'),
                       },
                     },
                     {
                       type: 'element',
                       name: 'wide310x150logo',
                       attributes: {
-                        src: path.posix.join(iconsPath, 'mstile-310x150.png'),
+                        src: path.posix.join(iconsBase, 'mstile-310x150.png'),
                       },
                     },
                     {
                       type: 'element',
                       name: 'square310x310logo',
                       attributes: {
-                        src: path.posix.join(iconsPath, 'mstile-310x310.png'),
+                        src: path.posix.join(iconsBase, 'mstile-310x310.png'),
                       },
                     },
                     {
@@ -73,3 +78,4 @@ export const getBrowserConfig = ({ iconsPath = '/', tileColor = '#fff' } = {}) =
       spaces: 2,
     },
   );
+}
