@@ -8,8 +8,8 @@
   "theme_color": "#fff",
   "display": "standalone",
   "orientation": "natural",
-  "scope": "https://hello-example.blogspot.com/",
-  "start_url": "https://hello-example.blogspot.com/?utm_source=homescreen",
+  "scope": "https://blogger-pwa.blogspot.com/",
+  "start_url": "https://blogger-pwa.blogspot.com/?utm_source=homescreen",
   "id": "/",
   "prefer_related_applications": false,
   "icons": [
@@ -124,7 +124,7 @@
       "name": "Shortcut 1",
       "short_name": "Shortcut 1",
       "description": "Shortcut 1 description goes here...",
-      "url": "https://hello-example.blogspot.com/search/label/shortcut-1?utm_source=homescreen"
+      "url": "https://blogger-pwa.blogspot.com/search/label/shortcut-1?utm_source=homescreen"
     },
     {
       "icons": [
@@ -136,7 +136,7 @@
       "name": "Shortcut 2",
       "short_name": "Shortcut 2",
       "description": "Shortcut 2 description goes here...",
-      "url": "https://hello-example.blogspot.com/search/label/shortcut-2?utm_source=homescreen"
+      "url": "https://blogger-pwa.blogspot.com/search/label/shortcut-2?utm_source=homescreen"
     }
   ]
 }
